@@ -1,0 +1,17 @@
+@layer components {
+	.chat-card {
+		@apply bg-white shadow-md rounded-xl overflow-hidden;
+	}
+
+	.chat-input {
+		@apply w-full rounded-lg border border-gray-200 bg-white px-4 py-2;
+	}
+
+	.message-assistant {
+		@apply self-end bg-blue-500 text-white rounded-xl px-4 py-2;
+	}
+
+	.message-user {
+		@apply self-start bg-gray-100 text-gray-900 rounded-xl px-4 py-2;
+	}
+}
