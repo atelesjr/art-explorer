@@ -1,126 +1,28 @@
+/*  Noto Sans */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Playfair Display */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @import 'tailwindcss';
 
 /* Import custom layers */
+@import './base.css';
 @import './components.css';
+/* @import './theme.css'; */
 
-@layer base {
-	*,
-	*::before,
-	*::after {
-		box-sizing: border-box;
-	}
+@theme {
+	--font-sans: 'Noto Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+		Roboto, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji',
+		'Segoe UI Symbol', 'Noto Color Emoji';
 
-	html,
-	body,
-	#root {
-		height: 100%;
-	}
+	--font-serif: 'Playfair Display', ui-serif, Georgia, Cambria,
+		'Times New Roman', Times, serif;
 
-	html {
-		line-height: 1.5;
-		-webkit-text-size-adjust: 100%;
-		-moz-osx-font-smoothing: grayscale;
-		-webkit-font-smoothing: antialiased;
-	}
+	--color-met-red: #e4002b;
+	--color-met-red-medium: #a6192e;
+	--color-met-red-dark: #6e182e;
+	--color-text: #6d6d6d;
+	--color-body-bg-white: #ffffff;
 
-	body {
-		margin: 0;
-		font-family: theme('fontFamily.sans');
-		background-color: theme('colors.gray.50');
-		color: theme('colors.gray.900');
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-		min-height: 100vh;
-	}
-
-	/* Links */
-	a {
-		color: inherit;
-		text-decoration: none;
-	}
-
-	/* Lists */
-	ul,
-	ol {
-		margin: 0;
-		padding: 0;
-		list-style: none;
-	}
-
-	/* Headings */
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		font-weight: 600;
-		margin: 0;
-	}
-
-	/* Forms - normalizar aparência */
-	input,
-	textarea,
-	select,
-	button {
-		font: inherit;
-	}
-
-	/* Inputs e textareas: aparência limpa, mas mantém acessibilidade */
-	input,
-	textarea {
-		background-color: transparent;
-		border: none;
-		outline: none;
-	}
-
-	/* Remove outline apenas visuais em dispositivos não-keyboard; mantenha foco acessível */
-	:focus {
-		outline: none;
-	}
-	:focus-visible {
-		outline: 2px solid theme('colors.blue.500');
-		outline-offset: 2px;
-		border-radius: 4px;
-	}
-
-	/* Code / pre */
-	pre,
-	code {
-		font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono',
-			'Courier New', monospace;
-		font-size: 0.875em;
-	}
-
-	/* Small utility to ensure images are responsive */
-	img {
-		max-width: 100%;
-		display: block;
-	}
-
-	/* HR */
-	hr {
-		border: 0;
-		height: 1px;
-		background-color: theme('colors.gray.200');
-	}
-}
-
-/* 3) Componentes ou utilitários próprios (opcional) */
-@layer components {
-	.chat-card {
-		@apply bg-white shadow-md rounded-xl overflow-hidden;
-	}
-
-	.chat-input {
-		@apply w-full rounded-lg border border-gray-200 bg-white px-4 py-2;
-	}
-
-	.message-assistant {
-		@apply self-end bg-blue-500 text-white rounded-xl px-4 py-2;
-	}
-
-	.message-user {
-		@apply self-start bg-gray-100 text-gray-900 rounded-xl px-4 py-2;
-	}
+	--font-size-standard: 16px;
 }

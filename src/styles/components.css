@@ -1,17 +1,33 @@
 @layer components {
-	.chat-card {
-		@apply bg-white shadow-md rounded-xl overflow-hidden;
+	.header {
+		@apply flex justify-between items-center
+    fixed  z-1000
+    h-20 p-4 bg-met-red text-white shadow-md w-full;
 	}
 
-	.chat-input {
-		@apply w-full rounded-lg border border-gray-200 bg-white px-4 py-2;
+	.bg-met-red {
+		background-color: var(--color-met-red);
 	}
 
-	.message-assistant {
-		@apply self-end bg-blue-500 text-white rounded-xl px-4 py-2;
+	/* Botão Hambúrguer -----------------------------------*/
+	.hamburger {
+		@apply flex flex-col gap-1.5 cursor-pointer p-2;
 	}
 
-	.message-user {
-		@apply self-start bg-gray-100 text-gray-900 rounded-xl px-4 py-2;
+	.hamburger .bar {
+		@apply w-6 h-0.5 bg-white transition-all duration-300 ease-in-out;
+	}
+
+	/* Animação quando o menu está aberto */
+	.hamburger.active .bar:nth-child(1) {
+		@apply rotate-45 translate-y-2;
+	}
+
+	.hamburger.active .bar:nth-child(2) {
+		@apply opacity-0;
+	}
+
+	.hamburger.active .bar:nth-child(3) {
+		@apply -rotate-45 -translate-y-2;
 	}
 }
