@@ -1,13 +1,14 @@
 @theme {
-	/* --color-grey-900: #222;
-  --color-grey-800: #484848;
-  --color-grey-700: #6d6d6d;
-  --color-grey-400: #b8b8b8;
-  --color-grey-300: #d6d6d6;
-  --color-grey-200: #e5e5e5;
-  --color-grey-100: #f4f4f4;
-  --color-grey-050: #fbfbfb; */
+	--font-sans: 'Noto Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+		Roboto, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji',
+		'Segoe UI Symbol', 'Noto Color Emoji';
+
+	--font-serif: 'Playfair Display', ui-serif, Georgia, Cambria,
+		'Times New Roman', Times, serif;
+
 	--color-met-red: #e4002b;
 	--color-met-red-medium: #a6192e;
 	--color-met-red-dark: #6e182e;
+	--color-text: #6d6d6d;
+	--color-body-bg-white: #ffffff;
 }

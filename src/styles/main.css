@@ -8,21 +8,4 @@
 /* Import custom layers */
 @import './base.css';
 @import './components.css';
-/* @import './theme.css'; */
-
-@theme {
-	--font-sans: 'Noto Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
-		Roboto, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji',
-		'Segoe UI Symbol', 'Noto Color Emoji';
-
-	--font-serif: 'Playfair Display', ui-serif, Georgia, Cambria,
-		'Times New Roman', Times, serif;
-
-	--color-met-red: #e4002b;
-	--color-met-red-medium: #a6192e;
-	--color-met-red-dark: #6e182e;
-	--color-text: #6d6d6d;
-	--color-body-bg-white: #ffffff;
-
-	--font-size-standard: 16px;
-}
+@import './theme.css';
