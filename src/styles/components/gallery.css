@@ -1,6 +1,6 @@
 @layer components {
 	.gallery-container {
-		@apply w-full px-4 sm:px-6 lg:px-8 py-8;
+		@apply w-full py-8 cursor-pointer;
 	}
 
 	.gallery-grid {
@@ -37,11 +37,11 @@
 	}
 
 	.gallery-content {
-		@apply p-4 flex flex-col gap-1;
+		@apply p-3 flex flex-col gap-1;
 	}
 
 	.gallery-title {
-		@apply text-base sm:text-lg 
+		@apply text-sm sm:text-base
       font-semibold 
       text-gray-900
       line-clamp-2

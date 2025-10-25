@@ -15,7 +15,7 @@ const Gallery = ({
 			artist: 'American',
 			date: '1794',
 			imageUrl:
-				'https://images.metmuseum.org/CRDImages/aa/original/DP-13428-001.jpg',
+				'https://images.metmuseum.org/CRDImages/aa/mobile-large/37.131.29_001Sept2014.jpg',
 		},
 		{
 			id: 2,
@@ -23,7 +23,7 @@ const Gallery = ({
 			artist: 'Minton(s)',
 			date: 'December 1873',
 			imageUrl:
-				'https://images.metmuseum.org/CRDImages/es/original/DP-12736-001.jpg',
+				'https://images.metmuseum.org/CRDImages/es/mobile-large/DP-16489-060.jpg',
 		},
 		{
 			id: 3,
@@ -31,7 +31,7 @@ const Gallery = ({
 			artist: 'Regiomontanus',
 			date: '1462',
 			imageUrl:
-				'https://images.metmuseum.org/CRDImages/es/original/DP269037.jpg',
+				'https://images.metmuseum.org/CRDImages/cl/mobile-large/MEDCLOIS-1159-s1.jpg',
 		},
 		{
 			id: 4,
@@ -39,7 +39,7 @@ const Gallery = ({
 			artist: 'China',
 			date: '18th century',
 			imageUrl:
-				'https://images.metmuseum.org/CRDImages/as/original/DP-14603-006.jpg',
+				'https://images.metmuseum.org/CRDImages/as/mobile-large/29_110_39.jpg',
 		},
 		{
 			id: 5,
@@ -47,7 +47,7 @@ const Gallery = ({
 			artist: 'American',
 			date: '1794',
 			imageUrl:
-				'https://images.metmuseum.org/CRDImages/aa/original/DP-13428-001.jpg',
+				'https://images.metmuseum.org/CRDImages/ci/mobile-large/1993.157.2_F.jpg',
 		},
 		{
 			id: 6,
@@ -55,7 +55,7 @@ const Gallery = ({
 			artist: 'Minton(s)',
 			date: 'December 1873',
 			imageUrl:
-				'https://images.metmuseum.org/CRDImages/es/original/DP-12736-001.jpg',
+				'https://images.metmuseum.org/CRDImages/an/mobile-large/ss1985_192_4.jpg',
 		},
 		{
 			id: 7,
@@ -63,7 +63,7 @@ const Gallery = ({
 			artist: 'Regiomontanus',
 			date: '1462',
 			imageUrl:
-				'https://images.metmuseum.org/CRDImages/es/original/DP269037.jpg',
+				'https://images.metmuseum.org/CRDImages/dp/mobile-large/DPB878859.jpg',
 		},
 		{
 			id: 8,
@@ -71,7 +71,7 @@ const Gallery = ({
 			artist: 'China',
 			date: '18th century',
 			imageUrl:
-				'https://images.metmuseum.org/CRDImages/as/original/DP-14603-006.jpg',
+				'https://images.metmuseum.org/CRDImages/an/mobile-large/ME1983_535_15.jpg',
 		},
 	];
 
