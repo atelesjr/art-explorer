@@ -26,8 +26,8 @@ apiClient.interceptors.response.use(
 
 export const metMuseumApi = {
     /**
-     * Search for artworks with images
-     * @param query - Search term (default: 'painting')
+     * Search for artworks (general search for default state)
+     * @param query - Search term (e.g., 'painting', 'sunflowers')
      * @returns Array of object IDs
      */
     searchArtworks: async (
@@ -36,9 +36,29 @@ export const metMuseumApi = {
         const { data } = await apiClient.get<MetMuseumSearchResponse>('/search', {
             params: {
                 hasImages: true,
-                q: query,
+                q: query.toLowerCase(),
             },
         });
+
+        return data;
+    },
+
+    /**
+     * Search for artworks by artist or culture
+     * @param query - Artist or culture name (should be lowercase, e.g., 'van gogh', 'dutch')
+     * @returns Array of object IDs
+     */
+    searchByArtistOrCulture: async (
+        query: string
+    ): Promise<MetMuseumSearchResponse> => {
+        const { data } = await apiClient.get<MetMuseumSearchResponse>('/search', {
+            params: {
+                artistOrCulture: true,
+                hasImages: true,
+                q: query.toLowerCase(),
+            },
+        });
+
         return data;
     },
 
@@ -66,12 +86,10 @@ export const metMuseumApi = {
         objectIds: number[]
     ): Promise<MetMuseumObjectDetails[]> => {
         const promises = objectIds.map((id) =>
-            metMuseumApi
-                .getObjectDetails(id)
-                .catch((error) => {
-                    console.warn(`Failed to fetch object ${id}:`, error.message);
-                    return null;
-                })
+            metMuseumApi.getObjectDetails(id).catch((error) => {
+                console.warn(`Failed to fetch object ${id}:`, error.message);
+                return null;
+            })
         );
 
         const results = await Promise.all(promises);

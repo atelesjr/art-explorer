@@ -1,3 +1,4 @@
+import React from 'react';
 import type { GalleryProps } from './types';
 import GalleryCardSkeleton from './GalleryCardSkeleton';
 import GalleryCard from './GalleryCard';
@@ -5,10 +6,10 @@ import InfiniteScrolling from '../InfiniteScrolling';
 import { useMetMuseumArtworks } from '@/hooks/useMetMuseumArtworks';
 
 const Gallery = ({
-	items = [],
 	isLoading = false,
 	className = '',
-	searchQuery = 'painting', // New prop for search
+	searchQuery = '',
+	onResultsChange,
 }: GalleryProps) => {
 	const {
 		artworks,
@@ -17,10 +18,25 @@ const Gallery = ({
 		hasNextPage,
 		fetchNextPage,
 		error,
+		totalResults,
+		isDefaultSearch,
 	} = useMetMuseumArtworks(searchQuery);
 
-	// Use API data if available, otherwise fallback to props
-	const displayItems = artworks.length > 0 ? artworks : items;
+	// Notify parent component of results count only when searching (not default)
+	React.useEffect(() => {
+		if (onResultsChange && searchQuery && !isLoadingApi && !isDefaultSearch) {
+			onResultsChange(totalResults);
+		}
+	}, [
+		totalResults,
+		isLoadingApi,
+		onResultsChange,
+		searchQuery,
+		isDefaultSearch,
+	]);
+
+	// Always use API data
+	const displayItems = artworks;
 	const loading = isLoading || isLoadingApi;
 
 	if (loading && displayItems.length === 0) {
