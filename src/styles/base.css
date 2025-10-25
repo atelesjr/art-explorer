@@ -20,7 +20,8 @@
 
 	body {
 		margin: 0;
-		font-family: theme('font-sans');
+		/* Define 1rem = 10px para facilitar cálculos */
+		font-size: 62.5%; /* 16px × 0.625 = 10px */
 		font-size: theme('text-base');
 		background-color: theme('color-body-bg-white');
 		color: theme('color-text');
@@ -52,6 +53,10 @@
 	h6 {
 		font-weight: 600;
 		margin: 0;
+	}
+
+	h1 {
+		@apply font-serif text-[23px] leading-[.9];
 	}
 
 	/* Forms - normalizar aparência */

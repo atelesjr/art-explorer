@@ -1,8 +1,9 @@
 @layer components {
+	/* Header -----------------------------------*/
 	.header {
 		@apply flex justify-between items-center
     fixed  z-1000
-    h-20 p-4 bg-met-red text-white shadow-md w-full;
+    h-15 sm:h-20 p-4 bg-met-red text-white shadow-md w-full;
 	}
 
 	.bg-met-red {

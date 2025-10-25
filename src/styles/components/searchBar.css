@@ -1,0 +1,31 @@
+@layer components {
+	.search-bar-container {
+		@apply relative w-full max-w-full;
+	}
+
+	.search-bar-input {
+		@apply w-full h-12 sm:h-14
+      px-4 sm:px-6 pr-12 sm:pr-14
+      text-base sm:text-lg
+      border border-gray-300
+      rounded-none
+      focus:outline-none focus:border-gray-400
+      transition-colors duration-200
+      placeholder:text-gray-400;
+	}
+
+	.search-bar-button {
+		@apply absolute right-0 top-0
+      h-12 sm:h-14 w-12 sm:w-14
+      flex items-center justify-center
+      bg-transparent
+      border-none
+      cursor-pointer
+      hover:opacity-50
+      transition-colors duration-200;
+	}
+
+	.search-bar-button .material-symbols-outlined {
+		@apply text-2xl sm:text-3xl;
+	}
+}

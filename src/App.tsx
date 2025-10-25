@@ -1,13 +1,12 @@
 import { Header } from './components/Header/Header';
+import Home from './pages/Home';
 
 function App() {
 	return (
 		<div className="container-main">
 			<Header />
-			<main>
-				<section className="Main">
-					<h2>Welcome to Art Explorer</h2>
-				</section>
+			<main className="main-content">
+				<Home />
 			</main>
 		</div>
 	);

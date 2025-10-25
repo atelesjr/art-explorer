@@ -1,0 +1,17 @@
+@import './header.css';
+@import './gallery.css';
+@import './searchBar.css';
+
+@layer components {
+	/* Container --------------------------------*/
+	.container-main {
+		@apply w-full;
+	}
+
+	.container-page {
+		@apply container border-2 h-screen w-full pt-20 px-6;
+	}
+
+	.container-gallery {
+	}
+}

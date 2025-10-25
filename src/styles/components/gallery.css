@@ -1,0 +1,61 @@
+@layer components {
+	.gallery-container {
+		@apply w-full px-4 sm:px-6 lg:px-8 py-8;
+	}
+
+	.gallery-grid {
+		@apply grid gap-6 sm:gap-8
+      grid-cols-1 
+      sm:grid-cols-2 
+      lg:grid-cols-3 
+      xl:grid-cols-4
+      auto-rows-auto;
+	}
+
+	.gallery-card {
+		@apply flex flex-col 
+      bg-white 
+      cursor-pointer
+      transition-transform duration-300
+      hover:scale-105
+      hover:shadow-xl;
+	}
+
+	.gallery-image-wrapper {
+		@apply w-full 
+      aspect-square 
+      overflow-hidden 
+      bg-gray-100
+      relative;
+	}
+
+	.gallery-image {
+		@apply w-full h-full 
+      object-cover 
+      transition-transform duration-500
+      hover:scale-110;
+	}
+
+	.gallery-content {
+		@apply p-4 flex flex-col gap-1;
+	}
+
+	.gallery-title {
+		@apply text-base sm:text-lg 
+      font-semibold 
+      text-gray-900
+      line-clamp-2
+      min-h-12;
+	}
+
+	.gallery-artist {
+		@apply text-sm 
+      text-gray-600
+      font-medium;
+	}
+
+	.gallery-date {
+		@apply text-sm 
+    text-gray-500;
+	}
+}

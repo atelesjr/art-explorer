@@ -7,5 +7,5 @@
 
 /* Import custom layers */
 @import './base.css';
-@import './components.css';
+@import './components/components.css';
 @import './theme.css';
