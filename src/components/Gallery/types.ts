@@ -10,4 +10,5 @@ export interface GalleryProps {
 	items?: ArtworkItem[];
 	isLoading?: boolean;
 	className?: string;
+	searchQuery?: string;
 }

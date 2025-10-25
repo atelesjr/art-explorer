@@ -6,7 +6,7 @@ type LoadingProps = {
 };
 
 const Loading: React.FC<LoadingProps> = ({
-	label = 'Carregando…',
+	label = 'Loading…',
 	className = '',
 }) => {
 	return (
