@@ -9,7 +9,7 @@
 	}
 
 	.container-page {
-		@apply container h-screen w-full pt-[70px] sm:pt-[90px] px-6;
+		@apply container h-screen w-full pt-[70px] sm:pt-[90px] px-6 mx-auto;
 	}
 
 	.container-gallery {

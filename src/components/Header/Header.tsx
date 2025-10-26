@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Logo } from './Logo';
 import { HamburgerMenu } from './HamburgerMenu';
 import { Navigation } from './Navigation';
+import { MenuDrawer } from './MenuDrawer';
 
 export function Header() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,10 +15,13 @@ export function Header() {
 		<header className="header">
 			<Logo />
 
-			<HamburgerMenu isOpen={isMenuOpen} onToggle={toggleMenu} />
-
 			<div className="hidden sm:flex">
 				<Navigation />
+			</div>
+
+			<div className="flex sm:hidden relative">
+				<HamburgerMenu isOpen={isMenuOpen} onToggle={toggleMenu} />
+				<MenuDrawer open={isMenuOpen} onToggle={toggleMenu} />
 			</div>
 		</header>
 	);
