@@ -1,16 +1,54 @@
-import type { ArtworkItem } from './types';
+import type { ArtworkItem } from '@/types/metMuseum';
+import { useNavigate } from 'react-router-dom';
+import { useQueryClient } from '@tanstack/react-query';
+import { metMuseumApi } from '@/services/metMuseumApi';
 
 const GalleryCard = ({ displayItems }: { displayItems: ArtworkItem[] }) => {
+	const navigate = useNavigate();
+	const queryClient = useQueryClient();
+
+	const prefetchDetails = async (id: number) => {
+		try {
+			const data = await queryClient.ensureQueryData({
+				queryKey: ['metMuseum', 'object', id.toString()],
+				queryFn: () => metMuseumApi.getObjectDetails(id),
+				staleTime: 10 * 60 * 1000,
+			});
+			if (data?.primaryImage) {
+				const img = new Image();
+				img.src = data.primaryImage; // warms image cache
+			}
+		} catch {
+			// ignore prefetch errors
+		}
+	};
+
 	return (
-		<div className="gallery-grid">
+		<div className="gallery-grid" onAuxClick={() => {}}>
 			{displayItems.map((item) => (
-				<figure key={item.id} className="gallery-card">
+				<figure
+					key={item.id}
+					className="gallery-card"
+					role="button"
+					tabIndex={0}
+					aria-label={`Open details for ${item.title}`}
+					onMouseEnter={() => prefetchDetails(item.id)}
+					onFocus={() => prefetchDetails(item.id)}
+					onClick={() => navigate(`/item/${item.id}`)}
+					onKeyDown={(e) => {
+						if (e.key === 'Enter' || e.key === ' ') {
+							e.preventDefault();
+							navigate(`/item/${item.id}`);
+						}
+					}}
+				>
 					<div className="gallery-image-wrapper">
 						<img
 							src={item.imageUrl}
 							alt={item.title}
 							className="gallery-image"
 							loading="lazy"
+							decoding="async"
 						/>
 					</div>
 					<figcaption className="gallery-content">
