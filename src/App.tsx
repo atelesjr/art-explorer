@@ -1,7 +1,7 @@
 import { Header } from './components/Header/Header';
 import Home from './pages/Home';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Favorites from '@/pages/UserCollection';
+import Favorites from '@/pages/Favorites';
 import ArtDetails from '@/pages/ArtDetails/ArtDetails';
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
 				<main className="main-content">
 					<Routes>
 						<Route path="/" element={<Home />} />
-						<Route path="/collection" element={<Favorites />} />
+						<Route path="/favorites" element={<Favorites />} />
 						<Route path="/item/:id" element={<ArtDetails />} />
 					</Routes>
 				</main>
