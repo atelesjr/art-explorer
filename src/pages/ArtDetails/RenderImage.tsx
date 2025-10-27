@@ -25,49 +25,11 @@ const RenderImage = ({
 		);
 	}
 
-	const renderImageSize = (
-		smallSrc: string | undefined,
-		largeSrc: string | undefined
-	) => {
-		const classSmall = `absolute inset-0 w-full h-full object-contain transition-opacity duration-200 blur-sm scale-105 ${
-			largeLoaded ? 'opacity-0' : 'opacity-100'
-		}`;
-		const classLarge = `absolute inset-0 w-full h-full object-contain transition-opacity duration-300 ${
-			largeLoaded ? 'opacity-100' : 'opacity-0'
-		}`;
-
-		const imageSrc = smallSrc ? smallSrc : largeSrc;
-		const className = smallSrc ? classSmall : classLarge;
-		const onLoad = smallSrc
-			? () => setSmallLoaded(true)
-			: () => setLargeLoaded(true);
-
-		if (!smallSrc && !largeSrc) {
-			<div className="absolute inset-0 flex items-center justify-center text-gray-400">
-				No image available
-			</div>;
-		}
-
-		return (
-			<img
-				src={imageSrc}
-				alt={artwork.title || 'Artwork'}
-				width={770}
-				height={470}
-				className={className}
-				onLoad={onLoad}
-				loading="eager"
-				decoding="async"
-				fetchPriority="high"
-			/>
-		);
-	};
-
 	return (
 		<div className="flex items-center justify-center">
 			<div
 				className="relative w-full max-w-[770px] h-[470px] bg-gray-100 rounded-lg overflow-hidden"
-				aria-busy={!largeLoaded} // accessibility hint
+				aria-busy={!largeLoaded}
 			>
 				{/* Loading overlay (spinner + pulse) */}
 				{!(smallLoaded || largeLoaded) && (
@@ -81,7 +43,45 @@ const RenderImage = ({
 					</div>
 				)}
 
-				{renderImageSize(smallSrc, largeSrc)}
+				{/* Placeholder/small image */}
+				{smallSrc && (
+					<img
+						src={smallSrc}
+						alt={artwork.title || 'Artwork'}
+						width={770}
+						height={470}
+						className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-200 blur-sm scale-105 ${
+							largeLoaded ? 'opacity-0' : 'opacity-100'
+						}`}
+						loading="eager"
+						decoding="async"
+						fetchPriority="high"
+						onLoad={() => setSmallLoaded(true)}
+					/>
+				)}
+
+				{/* Full image */}
+				{largeSrc && (
+					<img
+						src={largeSrc}
+						alt={artwork.title || 'Artwork'}
+						width={770}
+						height={470}
+						className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-300 ${
+							largeLoaded ? 'opacity-100' : 'opacity-0'
+						}`}
+						onLoad={() => setLargeLoaded(true)}
+						loading="eager"
+						decoding="async"
+						fetchPriority="high"
+					/>
+				)}
+
+				{!smallSrc && !largeSrc && (
+					<div className="absolute inset-0 flex items-center justify-center text-gray-400">
+						No image available
+					</div>
+				)}
 			</div>
 		</div>
 	);

@@ -1,18 +1,24 @@
-import { useState } from 'react';
 import HeartChecked from '@/assets/heart_checked.svg';
 import HeartPlus from '@/assets/heart_plus.svg';
+import { useFavoritesStore } from '@/stores';
 
 interface ButtonFavoriteProps {
 	label?: string;
 	onClick?: () => void;
+	artworkId: number;
 }
 
-const ButtonFavorite = ({ label, onClick }: ButtonFavoriteProps) => {
-	const [isFavorited, setIsFavorited] = useState(false);
+const ButtonFavorite = ({ label, artworkId }: ButtonFavoriteProps) => {
+	const { addFavorite, removeFavorite, isFavorite } = useFavoritesStore();
+	const isFavorited = isFavorite(artworkId);
+	console.log('artworkId:', artworkId); // Debug
 
 	const handleClick = () => {
-		setIsFavorited(!isFavorited);
-		if (onClick) onClick();
+		if (isFavorited) {
+			removeFavorite(artworkId);
+		} else {
+			addFavorite(artworkId);
+		}
 	};
 
 	const HeartIcon = isFavorited ? HeartChecked : HeartPlus;

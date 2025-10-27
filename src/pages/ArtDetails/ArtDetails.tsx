@@ -4,7 +4,7 @@ import { metMuseumApi } from '@/services/metMuseumApi';
 import BackSVG from '@/assets/back.svg';
 import ButtonFavorite from '@/components/Buttons/Favorite';
 import Details from './Details';
-import RenderImage from './renderImage';
+import RenderImage from './RenderImage';
 
 export default function ArtDetails() {
 	const { id } = useParams<{ id: string }>();
@@ -59,7 +59,7 @@ export default function ArtDetails() {
 					<Details artwork={artwork} />
 
 					<div className="">
-						<ButtonFavorite onClick={() => {}} />
+						<ButtonFavorite artworkId={Number(id)} />
 					</div>
 				</div>
 
