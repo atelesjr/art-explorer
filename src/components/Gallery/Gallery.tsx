@@ -1,7 +1,7 @@
-import React from 'react';
+import { useEffect } from 'react';
 import type { GalleryProps } from './types';
 import GalleryCardSkeleton from './GalleryCardSkeleton';
-import GalleryCard from './GalleryCard';
+import GalleryCards from './GalleryCards';
 import InfiniteScrolling from '../InfiniteScrolling';
 import { useMetMuseumArtworks } from '@/hooks/useMetMuseumArtworks';
 
@@ -23,7 +23,7 @@ const Gallery = ({
 	} = useMetMuseumArtworks(searchQuery);
 
 	// Notify parent component of results count only when searching (not default)
-	React.useEffect(() => {
+	useEffect(() => {
 		if (onResultsChange && searchQuery && !isLoadingApi && !isDefaultSearch) {
 			onResultsChange(totalResults);
 		}
@@ -85,7 +85,7 @@ const Gallery = ({
 					}
 				}}
 			>
-				<GalleryCard displayItems={displayItems} />
+				<GalleryCards displayItems={displayItems} />
 			</InfiniteScrolling>
 		</section>
 	);

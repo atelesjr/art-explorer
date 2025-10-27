@@ -39,6 +39,7 @@ export const useMetMuseumArtworks = (searchQuery: string) => {
 				? metMuseumApi.searchByArtistOrCulture(searchTerm)
 				: metMuseumApi.searchArtworks(searchTerm),
 		staleTime: 10 * 60 * 1000, // 10 minutes
+		gcTime: 30 * 60 * 1000, // Keep in cache for 30 minutes
 	});
 
 	// Then, use infinite query to paginate through the object IDs
@@ -78,11 +79,15 @@ export const useMetMuseumArtworks = (searchQuery: string) => {
 		getNextPageParam: (lastPage) => lastPage.nextCursor,
 		enabled: !!searchResults?.objectIDs,
 		initialPageParam: 0,
+		staleTime: 10 * 60 * 1000, // 10 minutes
+		gcTime: 30 * 60 * 1000, // Keep in cache for 30 minutes
 	});
 
 	// Flatten all pages into a single array
 	const artworks: ArtworkItem[] =
 		data?.pages.flatMap((page) => page.items) ?? [];
+
+	console.log('Artworks fetched:', artworks);
 
 	return {
 		artworks,
