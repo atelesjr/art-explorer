@@ -4,9 +4,13 @@ import Gallery from '@/components/Gallery/Gallery';
 import SearchBar from '@/components/SearchBar/SearchBar';
 
 const SCROLL_POSITION_KEY = 'home-scroll-position';
+const SEARCH_QUERY_KEY = 'home-search-query'; // NEW
 
 const Home = () => {
-	const [searchQuery, setSearchQuery] = useState<string>('');
+	// NEW: Initialize from sessionStorage
+	const [searchQuery, setSearchQuery] = useState<string>(() => {
+		return sessionStorage.getItem(SEARCH_QUERY_KEY) || '';
+	});
 	const [totalResults, setTotalResults] = useState<number>(0);
 	const location = useLocation();
 
@@ -58,6 +62,7 @@ const Home = () => {
 	const handleSearch = (query: string) => {
 		console.log('Searching for:', query);
 		setSearchQuery(query);
+		sessionStorage.setItem(SEARCH_QUERY_KEY, query); // NEW: Persist query
 		sessionStorage.removeItem(SCROLL_POSITION_KEY);
 		window.scrollTo(0, 0);
 	};
@@ -66,6 +71,7 @@ const Home = () => {
 		console.log('Resetting search');
 		setSearchQuery('');
 		setTotalResults(0);
+		sessionStorage.removeItem(SEARCH_QUERY_KEY); // NEW: Clear persisted query
 		sessionStorage.removeItem(SCROLL_POSITION_KEY);
 		window.scrollTo(0, 0);
 	};
@@ -79,7 +85,11 @@ const Home = () => {
 			<h1 className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8">
 				Search The Collection
 			</h1>
-			<SearchBar onSearch={handleSearch} onReset={handleReset} />
+			<SearchBar
+				onSearch={handleSearch}
+				onReset={handleReset}
+				initialQuery={searchQuery} // NEW: Pass initial value to SearchBar
+			/>
 			{searchQuery && totalResults > 0 && (
 				<div className="mt-4 mb-6">
 					<p className="text-gray-600 text-sm">

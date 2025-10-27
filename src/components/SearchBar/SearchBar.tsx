@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useState, type FormEvent, useEffect } from 'react';
 import Search from '@/assets/search.svg';
 import Close from '@/assets/close.svg';
 
@@ -7,6 +7,7 @@ interface SearchBarProps {
 	onSearch?: (query: string) => void;
 	onReset?: () => void;
 	className?: string;
+	initialQuery?: string; // NEW
 }
 
 const SearchBar = ({
@@ -14,9 +15,16 @@ const SearchBar = ({
 	onSearch,
 	onReset,
 	className = '',
+	initialQuery = '', // NEW
 }: SearchBarProps) => {
-	const [query, setQuery] = useState('');
-	const [isSearchActive, setIsSearchActive] = useState(false);
+	const [query, setQuery] = useState(initialQuery);
+	const [isSearchActive, setIsSearchActive] = useState(!!initialQuery); // NEW: Set based on initial value
+
+	// NEW: Sync with parent changes
+	useEffect(() => {
+		setQuery(initialQuery);
+		setIsSearchActive(!!initialQuery);
+	}, [initialQuery]);
 
 	const handleSubmit = (e: FormEvent) => {
 		e.preventDefault();
