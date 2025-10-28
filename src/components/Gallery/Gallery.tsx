@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo } from 'react';
 import type { GalleryProps } from '@/types/gallery';
 import GalleryCardSkeleton from './GalleryCardSkeleton';
 import GalleryCards from './GalleryCards';
-import InfiniteScrolling from '../InfiniteScrolling';
+import InfiniteScrolling from '@/components/InfiniteScrolling/InfiniteScrolling';
 import { useMetMuseumArtworks } from '@/hooks/useMetMuseumArtworks';
 
 const PAGE_SIZE = 15;

@@ -8,7 +8,7 @@ import {
 	type FC,
 	type ReactNode,
 } from 'react';
-import Loading from './Loading';
+import Loading from '@/components/Loading/Loading';
 
 type Props = {
 	children: ReactNode | ReactNode[];
