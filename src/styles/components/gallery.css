@@ -14,7 +14,7 @@
 
 	.gallery-card {
 		@apply flex flex-col 
-      bg-white 
+      bg-white dark:bg-gray-700
       cursor-pointer
       transition-transform duration-300
       hover:scale-105
@@ -43,19 +43,19 @@
 	.gallery-title {
 		@apply text-sm sm:text-base
       font-semibold 
-      text-gray-900
+      text-gray-900 dark:text-gray-200
       line-clamp-2
       min-h-12;
 	}
 
 	.gallery-artist {
 		@apply text-sm 
-      text-gray-600
+      text-gray-600 dark:text-gray-300
       font-medium;
 	}
 
 	.gallery-date {
 		@apply text-sm 
-    text-gray-500;
+    text-gray-500 dark:text-gray-400;
 	}
 }

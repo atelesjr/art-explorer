@@ -56,7 +56,7 @@
 	}
 
 	h1 {
-		@apply font-serif text-[23px] leading-[.9];
+		@apply font-serif text-[23px] leading-[.9] dark:text-gray-400;
 	}
 
 	/* Forms - normalizar aparência */

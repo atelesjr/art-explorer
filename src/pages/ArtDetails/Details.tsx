@@ -11,8 +11,10 @@ interface DetailProps {
 
 const Detail = ({ label, content }: DetailProps) => {
 	return (
-		<div className="border-b border-gray-300 pb-2">
-			<dt className="font-semibold text-gray-700">{label}</dt>
+		<div className="border-b border-gray dark:border-gray-700 pb-2">
+			<dt className="font-semibold text-gray-700 dark:text-gray-400">
+				{label}
+			</dt>
 			<dd className="mt-1">{content}</dd>
 		</div>
 	);

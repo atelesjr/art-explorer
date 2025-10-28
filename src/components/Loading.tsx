@@ -11,13 +11,13 @@ const Loading: React.FC<LoadingProps> = ({
 }) => {
 	return (
 		<div
-			className={`flex items-center justify-center py-4 ${className}`}
+			className={`flex items-center justify-center py-4 m-4 ${className}`}
 			role="status"
 			aria-live="polite"
 			aria-busy="true"
 		>
 			<span className="mr-3 inline-block h-5 w-5 animate-spin rounded-full border-2 border-gray-300 border-t-gray-700" />
-			<span className="text-sm text-gray-600">{label}</span>
+			<span className="text-sm text-gray-600 dark:text-gray-400">{label}</span>
 		</div>
 	);
 };

@@ -9,3 +9,5 @@
 @import './base.css';
 @import './components/components.css';
 @import './theme.css';
+
+@custom-variant dark (&:where(.dark, .dark *));
