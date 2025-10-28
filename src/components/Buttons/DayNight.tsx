@@ -3,43 +3,57 @@ import sunIcon from '@/assets/sun.svg';
 import moonIcon from '@/assets/moon_crescent.svg';
 
 const DayNightButton = () => {
-	const [isDark, setIsDark] = useState(() => {
-		const saved = localStorage.getItem('theme');
-		return saved === 'dark';
+	// Respect saved value; if none, fall back to system preference
+	const [isDark, setIsDark] = useState<boolean>(() => {
+		try {
+			const saved = localStorage.getItem('theme');
+			if (saved === 'dark') return true;
+			if (saved === 'light') return false;
+			return (
+				window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false
+			);
+		} catch {
+			return false;
+		}
 	});
 
 	useEffect(() => {
-		if (isDark) {
-			document.documentElement.classList.add('dark');
-			localStorage.setItem('theme', 'dark');
-		} else {
-			document.documentElement.classList.remove('dark');
-			localStorage.setItem('theme', 'light');
+		const root = document.documentElement;
+		root.classList.toggle('dark', isDark);
+		try {
+			localStorage.setItem('theme', isDark ? 'dark' : 'light');
+		} catch {
+			/* ignore storage errors */
 		}
 	}, [isDark]);
 
-	const toggleTheme = () => {
-		setIsDark(!isDark);
-	};
+	const toggleTheme = () => setIsDark((v) => !v);
+
+	const togglePosition = isDark ? 'translate-x-[27px]' : 'translate-x-[3px]';
+	const toggleColor = isDark ? 'bg-met-red-darker' : 'bg-met-red-lighter';
 
 	return (
 		<button
-			onClick={toggleTheme}
-			className="relative inline-flex h-6 w-[50px] items-center rounded-full transition-colors duration-300"
-			style={{ backgroundColor: isDark ? '#8B0000' : '#f3a7a7' }}
+			type="button"
+			role="switch"
+			aria-checked={isDark}
 			aria-label="Toggle dark mode"
+			title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+			onClick={toggleTheme}
+			onKeyDown={(e) => {
+				if (e.key === 'Enter' || e.key === ' ') {
+					e.preventDefault();
+					toggleTheme();
+				}
+			}}
+			className={`toggle-day-night ${toggleColor}`}
 		>
-			{/* Sliding circle */}
-			<span
-				className="absolute h-5 w-5 rounded-full bg-red-950 transition-transform duration-300 flex items-center justify-center"
-				style={{
-					transform: isDark ? 'translateX(27px)' : 'translateX(3px)',
-				}}
-			>
+			<span className={`toggle-btn ${togglePosition}`}>
 				<img
 					src={isDark ? moonIcon : sunIcon}
-					alt={isDark ? 'Moon' : 'Sun'}
-					className="h-3.5 w-3.5"
+					alt=""
+					aria-hidden="true"
+					className="toggle-img"
 				/>
 			</span>
 		</button>

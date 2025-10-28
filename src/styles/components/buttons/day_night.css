@@ -1,0 +1,13 @@
+@layer components {
+	.toggle-day-night {
+		@apply relative inline-flex h-6 w-[50px] items-center rounded-full transition-colors duration-300;
+	}
+
+	.toggle-btn {
+		@apply absolute h-5 w-5 rounded-full bg-red-950 transition-transform duration-300 flex items-center justify-center;
+	}
+
+	.toggle-img {
+		@apply h-3.5 w-3.5;
+	}
+}

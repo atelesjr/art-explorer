@@ -6,8 +6,10 @@
 	--font-serif: 'Playfair Display', ui-serif, Georgia, Cambria,
 		'Times New Roman', Times, serif;
 
+	--color-met-red-lighter: #f3a7a7;
 	--color-met-red: #e4002b;
 	--color-met-red-dark: #b50020;
+	--color-met-red-darker: #8b0000;
 	--color-text: #6d6d6d;
 	--color-body-bg-white: #ffffff;
 }
