@@ -1,6 +1,6 @@
 @layer components {
 	.toggle-day-night {
-		@apply relative inline-flex h-6 w-[50px] items-center rounded-full transition-colors duration-300;
+		@apply relative inline-flex h-6 w-[50px] items-center rounded-full transition-colors duration-300 cursor-pointer;
 	}
 
 	.toggle-btn {

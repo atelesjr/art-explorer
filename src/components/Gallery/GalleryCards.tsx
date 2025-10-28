@@ -1,6 +1,6 @@
 import type { ArtworkItem } from '@/types/metMuseum';
 import { useNavigate } from 'react-router-dom';
-import React, { useCallback } from 'react';
+import React, { memo, useCallback } from 'react';
 import { usePrefetchMetObject } from '@/hooks/usePrefetchMetObject';
 
 interface GalleryCardsProps {
@@ -51,13 +51,16 @@ const Card = React.memo(function Card({
 	);
 });
 
-const GalleryCards = React.memo(({ displayItems }: GalleryCardsProps) => {
+const GalleryCards = memo(({ displayItems }: GalleryCardsProps) => {
 	const navigate = useNavigate();
 	const prefetchDetails = usePrefetchMetObject();
 
-	const openDetails = useCallback((id: number) => {
-		navigate(`/item/${id}`);
-	}, [navigate]);
+	const openDetails = useCallback(
+		(id: number) => {
+			navigate(`/item/${id}`);
+		},
+		[navigate]
+	);
 
 	return (
 		<div className="gallery-grid">
