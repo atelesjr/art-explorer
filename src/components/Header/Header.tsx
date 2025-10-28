@@ -3,6 +3,7 @@ import { Logo } from './Logo';
 import { HamburgerMenu } from './HamburgerMenu';
 import { Navigation } from './Navigation';
 import { MenuDrawer } from './MenuDrawer';
+import DayNightButton from '../Buttons/DayNight';
 
 export function Header() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,8 +16,9 @@ export function Header() {
 		<header className="header">
 			<Logo />
 
-			<div className="hidden sm:flex">
+			<div className="hidden sm:flex items-center gap-4">
 				<Navigation />
+				<DayNightButton />
 			</div>
 
 			<div className="flex sm:hidden relative">

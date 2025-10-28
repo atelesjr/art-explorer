@@ -36,11 +36,11 @@
 
 	/* Navigation */
 	.nav-link {
-		@apply flex items-center cursor-pointer hover:opacity-80;
+		@apply flex items-center cursor-pointer gap-1 hover:opacity-80;
 	}
 
 	.nav-img {
-		@apply h-6 w-6;
+		@apply h-4 w-3;
 	}
 
 	.nav-font {
