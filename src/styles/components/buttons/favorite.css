@@ -1,0 +1,9 @@
+@layer components {
+	.btn-favorite {
+		@apply flex items-center gap-2 px-4 py-2 rounded hover:opacity-70 cursor-pointer;
+	}
+
+	.btn-favorite-img {
+		@apply w-8 h-auto;
+	}
+}

@@ -2,6 +2,7 @@
 @import './gallery.css';
 @import './searchBar.css';
 @import './buttons/day_night.css';
+@import './buttons/favorite.css';
 
 @layer components {
 	/* Container --------------------------------*/

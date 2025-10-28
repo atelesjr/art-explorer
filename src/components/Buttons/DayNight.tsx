@@ -3,7 +3,6 @@ import sunIcon from '@/assets/sun.svg';
 import moonIcon from '@/assets/moon_crescent.svg';
 
 const DayNightButton = () => {
-	// Respect saved value; if none, fall back to system preference
 	const [isDark, setIsDark] = useState<boolean>(() => {
 		try {
 			const saved = localStorage.getItem('theme');
