@@ -28,7 +28,7 @@ const GalleryCards = ({ displayItems }: GalleryCardsProps) => {
 	};
 
 	return (
-		<div className="gallery-grid" onAuxClick={() => {}}>
+		<div className="gallery-grid">
 			{displayItems.map((item) => (
 				<figure
 					key={item.id}

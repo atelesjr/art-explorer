@@ -10,9 +10,10 @@ const Gallery = ({
 	className = '',
 	searchQuery = '',
 	onResultsChange,
+	externalArtworks,
 }: GalleryProps) => {
 	const {
-		artworks,
+		artworks: apiArtworks,
 		isLoading: isLoadingApi,
 		isFetchingNextPage,
 		hasNextPage,
@@ -20,9 +21,11 @@ const Gallery = ({
 		error,
 		totalResults,
 		isDefaultSearch,
-	} = useMetMuseumArtworks(searchQuery);
+	} = useMetMuseumArtworks(searchQuery, !externalArtworks);
 
-	// Notify parent component of results count only when searching (not default)
+	const displayItems = externalArtworks || apiArtworks;
+	const loading = externalArtworks ? isLoading : isLoadingApi;
+
 	useEffect(() => {
 		if (onResultsChange && searchQuery && !isLoadingApi && !isDefaultSearch) {
 			onResultsChange(totalResults);
@@ -35,23 +38,19 @@ const Gallery = ({
 		isDefaultSearch,
 	]);
 
-	// Always use API data
-	const displayItems = artworks;
-	const loading = isLoading || isLoadingApi;
-
 	if (loading && displayItems.length === 0) {
 		return (
 			<section className={`gallery-container ${className}`}>
 				<div className="gallery-grid">
-					{Array.from({ length: 15 }).map((_, index) => (
-						<GalleryCardSkeleton key={index} />
+					{Array.from({ length: 15 }).map((_, i) => (
+						<GalleryCardSkeleton key={i} />
 					))}
 				</div>
 			</section>
 		);
 	}
 
-	if (error) {
+	if (error && !externalArtworks) {
 		return (
 			<section className={`gallery-container ${className}`}>
 				<div className="text-center py-12">
@@ -63,12 +62,20 @@ const Gallery = ({
 		);
 	}
 
-	if (displayItems.length === 0) {
+	if (!loading && displayItems.length === 0) {
 		return (
 			<section className={`gallery-container ${className}`}>
 				<div className="text-center py-12">
 					<p className="text-gray-500 text-lg">No artworks found</p>
 				</div>
+			</section>
+		);
+	}
+
+	if (externalArtworks) {
+		return (
+			<section className={`gallery-container ${className}`}>
+				<GalleryCards displayItems={displayItems} />
 			</section>
 		);
 	}

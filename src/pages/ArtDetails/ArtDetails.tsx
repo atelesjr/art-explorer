@@ -34,7 +34,6 @@ export default function ArtDetails() {
 
 	return (
 		<div className="container-page">
-			{/* Back button */}
 			<BackButton />
 
 			<div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

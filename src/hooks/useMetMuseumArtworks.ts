@@ -1,12 +1,10 @@
-import { useQuery, useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { metMuseumApi } from '@/services/metMuseumApi';
 import type { ArtworkItem } from '@/types/metMuseum';
 
 const PAGE_SIZE = 15;
+const DEFAULT_SEARCH = 'painting';
 
-/**
- * Transform Met Museum API response to our ArtworkItem format
- */
 const transformToArtworkItem = (
 	details: Awaited<ReturnType<typeof metMuseumApi.getObjectDetails>>
 ): ArtworkItem => ({
@@ -17,86 +15,85 @@ const transformToArtworkItem = (
 	imageUrl: details.primaryImageSmall || details.primaryImage || '',
 });
 
-/**
- * Hook to fetch and paginate Met Museum artworks
- * Uses infinite query for seamless pagination
- * @param searchQuery - Artist or culture name to search for (should be lowercase)
- */
-export const useMetMuseumArtworks = (searchQuery: string) => {
-	// Determine if we're doing a user search or default search
-	const isUserSearch = searchQuery.trim().length > 0;
-	const searchTerm = isUserSearch ? searchQuery.trim() : 'painting';
+export const useMetMuseumArtworks = (
+	searchQuery: string = '',
+	enabled: boolean = true
+) => {
+	const actualSearchQuery = searchQuery.trim() || DEFAULT_SEARCH;
+	const isDefaultSearch = !searchQuery.trim();
 
-	// First, fetch all object IDs
-	const {
-		data: searchResults,
-		isLoading: isLoadingSearch,
-		error: searchError,
-	} = useQuery({
-		queryKey: ['metMuseum', 'search', searchTerm, isUserSearch],
-		queryFn: () =>
-			isUserSearch
-				? metMuseumApi.searchByArtistOrCulture(searchTerm)
-				: metMuseumApi.searchArtworks(searchTerm),
-		staleTime: 10 * 60 * 1000, // 10 minutes
-		gcTime: 30 * 60 * 1000, // Keep in cache for 30 minutes
-	});
-
-	// Then, use infinite query to paginate through the object IDs
 	const {
 		data,
+		isLoading,
+		error,
 		fetchNextPage,
 		hasNextPage,
 		isFetchingNextPage,
-		isLoading: isLoadingArtworks,
-		error: artworksError,
 	} = useInfiniteQuery({
-		queryKey: ['metMuseum', 'artworks', searchTerm, isUserSearch],
+		queryKey: ['metMuseum', 'search', actualSearchQuery],
 		queryFn: async ({ pageParam = 0 }) => {
-			if (!searchResults?.objectIDs) {
-				return { items: [], nextCursor: undefined };
+			let objectIDs: number[] = [];
+
+			if (isDefaultSearch) {
+				const general = await metMuseumApi.searchArtworks(actualSearchQuery);
+				objectIDs = general.objectIDs ?? [];
+			} else {
+				const byArtist = await metMuseumApi.searchByArtistOrCulture(
+					actualSearchQuery
+				);
+				objectIDs = byArtist.objectIDs ?? [];
+				if (objectIDs.length === 0) {
+					const general = await metMuseumApi.searchArtworks(actualSearchQuery);
+					objectIDs = general.objectIDs ?? [];
+				}
 			}
 
-			const startIndex = pageParam * PAGE_SIZE;
-			const endIndex = startIndex + PAGE_SIZE;
-			const pageObjectIds = searchResults.objectIDs.slice(startIndex, endIndex);
-
-			if (pageObjectIds.length === 0) {
-				return { items: [], nextCursor: undefined };
+			if (!objectIDs || objectIDs.length === 0) {
+				return { artworks: [], nextPage: undefined, total: 0 };
 			}
 
-			// Batch fetch details for this page
-			const details = await metMuseumApi.batchGetObjectDetails(pageObjectIds);
-			const items = details
-				.map(transformToArtworkItem)
-				.filter((item) => item.imageUrl); // Only items with images
+			const start = pageParam as number;
+			const end = Math.min(start + PAGE_SIZE, objectIDs.length);
+			const pageObjectIDs = objectIDs.slice(start, end);
 
-			const hasMore = endIndex < searchResults.objectIDs.length;
-			const nextCursor = hasMore ? pageParam + 1 : undefined;
+			const results = await Promise.allSettled(
+				pageObjectIDs.map((id) => metMuseumApi.getObjectDetails(id))
+			);
 
-			return { items, nextCursor };
+			const artworks = results
+				.filter(
+					(
+						r
+					): r is PromiseFulfilledResult<
+						Awaited<ReturnType<typeof metMuseumApi.getObjectDetails>>
+					> => r.status === 'fulfilled'
+				)
+				.map((r) => transformToArtworkItem(r.value))
+				.filter((a) => a.imageUrl); // segurança
+
+			return {
+				artworks,
+				nextPage: end < objectIDs.length ? end : undefined,
+				total: objectIDs.length,
+			};
 		},
-		getNextPageParam: (lastPage) => lastPage.nextCursor,
-		enabled: !!searchResults?.objectIDs,
+		getNextPageParam: (lastPage) => lastPage.nextPage,
 		initialPageParam: 0,
-		staleTime: 10 * 60 * 1000, // 10 minutes
-		gcTime: 30 * 60 * 1000, // Keep in cache for 30 minutes
+		staleTime: 5 * 60 * 1000,
+		enabled,
 	});
 
-	// Flatten all pages into a single array
-	const artworks: ArtworkItem[] =
-		data?.pages.flatMap((page) => page.items) ?? [];
-
-	console.log('Artworks fetched:', artworks);
+	const artworks = data?.pages.flatMap((p) => p.artworks) ?? [];
+	const totalResults = data?.pages[0]?.total ?? 0;
 
 	return {
 		artworks,
-		isLoading: isLoadingSearch || isLoadingArtworks,
-		isFetchingNextPage,
-		hasNextPage: hasNextPage ?? false,
+		isLoading,
+		error,
 		fetchNextPage,
-		error: searchError || artworksError,
-		totalResults: searchResults?.total ?? 0,
-		isDefaultSearch: !isUserSearch,
+		hasNextPage: !!hasNextPage,
+		isFetchingNextPage,
+		totalResults,
+		isDefaultSearch,
 	};
 };
