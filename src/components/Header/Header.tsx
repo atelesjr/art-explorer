@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Logo } from './Logo';
-import { HamburgerMenu } from './HamburgerMenu';
+import ButtonHamburger from '@/components/Buttons/Hamburger';
 import { Navigation } from './Navigation';
 import { MenuDrawer } from './MenuDrawer';
 import DayNightButton from '../Buttons/DayNight';
@@ -22,7 +22,7 @@ export function Header() {
 			</div>
 
 			<div className="flex sm:hidden relative">
-				<HamburgerMenu isOpen={isMenuOpen} onToggle={toggleMenu} />
+				<ButtonHamburger isOpen={isMenuOpen} onToggle={toggleMenu} />
 				<MenuDrawer open={isMenuOpen} onToggle={toggleMenu} />
 			</div>
 		</header>

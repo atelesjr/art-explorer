@@ -1,14 +1,14 @@
-interface HamburgerMenuProps {
+interface ButtonHamburgerProps {
 	isOpen: boolean;
 	onToggle: () => void;
 	className?: string;
 }
 
-export function HamburgerMenu({
+const ButtonHamburger = ({
 	isOpen,
 	onToggle,
 	className = '',
-}: HamburgerMenuProps) {
+}: ButtonHamburgerProps) => {
 	return (
 		<div
 			className={`hamburger sm:hidden ${isOpen ? 'active' : ''} ${className}`}
@@ -19,4 +19,6 @@ export function HamburgerMenu({
 			<div className="bar" />
 		</div>
 	);
-}
+};
+
+export default ButtonHamburger;
