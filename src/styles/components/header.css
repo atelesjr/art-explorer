@@ -1,13 +1,18 @@
 @layer components {
 	/* Header -----------------------------------*/
+
 	.header {
 		@apply flex justify-between items-center
     fixed  z-1000
     h-15 sm:h-20 p-4 bg-met-red dark:bg-met-red-dark text-white shadow-md w-full;
 	}
 
-	.bg-met-red {
-		background-color: var(--color-met-red);
+	.header-navigation {
+		@apply hidden sm:flex items-center gap-4;
+	}
+
+	.header-navigation-mobile {
+		@apply flex sm:hidden relative;
 	}
 
 	/* Navigation */
@@ -21,5 +26,16 @@
 
 	.nav-font {
 		@apply text-sm;
+	}
+
+	/* Menu Drawer */
+	.menu-drawer {
+		@apply w-[200px] h-screen p-2
+    fixed top-[60px] right-0 z-30
+			/* slide animation */
+			transition-transform duration-300 ease-in-out
+      /* shadow */
+      shadow-lg
+      bg-met-red dark:bg-met-red-dark text-white;
 	}
 }

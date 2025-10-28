@@ -1,27 +1,23 @@
-import { useState } from 'react';
 import { Logo } from './Logo';
-import ButtonHamburger from '@/components/Buttons/Hamburger';
 import { Navigation } from './Navigation';
 import { MenuDrawer } from './MenuDrawer';
 import DayNightButton from '../Buttons/DayNight';
+import { useToggle } from '@/hooks/useToggle';
+import ButtonHamburger from '@/components/Buttons/Hamburger';
 
 export function Header() {
-	const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-	const toggleMenu = () => {
-		setIsMenuOpen(!isMenuOpen);
-	};
+	const { value: isMenuOpen, toggle: toggleMenu } = useToggle(false);
 
 	return (
 		<header className="header">
 			<Logo />
 
-			<div className="hidden sm:flex items-center gap-4">
+			<div className="header-navigation">
 				<Navigation />
 				<DayNightButton />
 			</div>
 
-			<div className="flex sm:hidden relative">
+			<div className="header-navigation-mobile">
 				<ButtonHamburger isOpen={isMenuOpen} onToggle={toggleMenu} />
 				<MenuDrawer open={isMenuOpen} onToggle={toggleMenu} />
 			</div>

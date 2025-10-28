@@ -1,3 +1,4 @@
+import DayNightButton from '../Buttons/DayNight';
 import { Navigation } from './Navigation';
 
 type MenuDrawerProps = {
@@ -13,24 +14,17 @@ export function MenuDrawer({
 
 	className = '',
 }: MenuDrawerProps) {
+	const position = open ? 'translate-x-0' : 'translate-x-full';
 	return (
 		<div
 			aria-hidden={!open}
 			role="dialog"
-			className={[
-				'fixed top-[60px] right-0 z-30',
-				//slide animation
-				open ? 'translate-x-0' : 'translate-x-full',
-				'transition-transform duration-300 ease-in-out',
-				//size
-				'w-[200px] h-screen p-2',
-				//shadow
-				'shadow-lg',
-				'bg-met-red text-white',
-				className,
-			].join(' ')}
+			className={`menu-drawer ${position} ${className}`}
 		>
 			<Navigation />
+			<div className="mt-4 w-full flex justify-end">
+				<DayNightButton />
+			</div>
 		</div>
 	);
 }
