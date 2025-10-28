@@ -3,6 +3,7 @@
 @import './searchBar.css';
 @import './buttons/day_night.css';
 @import './buttons/favorite.css';
+@import './buttons/hamburguer.css';
 
 @layer components {
 	/* Container --------------------------------*/

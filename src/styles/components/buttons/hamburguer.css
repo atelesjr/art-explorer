@@ -1,0 +1,22 @@
+@layer components {
+	.hamburger {
+		@apply flex flex-col gap-1.5 cursor-pointer p-2;
+	}
+
+	.hamburger .bar {
+		@apply w-6 h-0.5 bg-white transition-all duration-300 ease-in-out;
+	}
+
+	/* Animation when it's open */
+	.hamburger.active .bar:nth-child(1) {
+		@apply rotate-45 translate-y-2;
+	}
+
+	.hamburger.active .bar:nth-child(2) {
+		@apply opacity-0;
+	}
+
+	.hamburger.active .bar:nth-child(3) {
+		@apply -rotate-45 -translate-y-2;
+	}
+}
