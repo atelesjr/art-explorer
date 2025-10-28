@@ -1,9 +1,7 @@
 @import './header.css';
 @import './gallery.css';
 @import './searchBar.css';
-@import './buttons/day_night.css';
-@import './buttons/favorite.css';
-@import './buttons/hamburguer.css';
+@import './buttons/buttons.css';
 
 @layer components {
 	/* Container --------------------------------*/

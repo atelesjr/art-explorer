@@ -1,13 +1,13 @@
-import { useState, type FormEvent, useEffect } from 'react';
-import Search from '@/assets/search.svg';
-import Close from '@/assets/close.svg';
+import { memo } from 'react';
+import SearchButton from './SearchButton';
+import { useSearch } from './useSearch';
 
 interface SearchBarProps {
 	placeholder?: string;
 	onSearch?: (query: string) => void;
 	onReset?: () => void;
 	className?: string;
-	initialQuery?: string; // NEW
+	initialQuery?: string;
 }
 
 const SearchBar = ({
@@ -15,62 +15,42 @@ const SearchBar = ({
 	onSearch,
 	onReset,
 	className = '',
-	initialQuery = '', // NEW
+	initialQuery = '',
 }: SearchBarProps) => {
-	const [query, setQuery] = useState(initialQuery);
-	const [isSearchActive, setIsSearchActive] = useState(!!initialQuery); // NEW: Set based on initial value
-
-	// NEW: Sync with parent changes
-	useEffect(() => {
-		setQuery(initialQuery);
-		setIsSearchActive(!!initialQuery);
-	}, [initialQuery]);
-
-	const handleSubmit = (e: FormEvent) => {
-		e.preventDefault();
-		const trimmedQuery = query.trim().toLowerCase();
-		if (onSearch && trimmedQuery) {
-			onSearch(trimmedQuery);
-			setIsSearchActive(true);
-		}
-	};
-
-	const handleReset = () => {
-		setQuery('');
-		setIsSearchActive(false);
-		if (onReset) {
-			onReset();
-		}
-	};
+	const { query, hasQuery, handleChange, handleSubmit, handleReset } =
+		useSearch({
+			initialQuery,
+			onSearch,
+			onReset,
+		});
 
 	return (
 		<form
+			role="search"
 			onSubmit={handleSubmit}
 			className={`search-bar-container ${className}`}
 		>
 			<input
 				type="text"
+				name="q"
 				value={query}
-				onChange={(e) => setQuery(e.target.value)}
+				onChange={handleChange}
+				onKeyDown={(e) => {
+					if (e.key === 'Escape' && hasQuery) {
+						e.preventDefault();
+						handleReset();
+					}
+				}}
 				placeholder={placeholder}
 				className="search-bar-input"
+				aria-label="Search artworks by artist or culture"
+				autoComplete="off"
+				spellCheck={false}
+				inputMode="search"
 			/>
-			{isSearchActive ? (
-				<button
-					type="button"
-					onClick={handleReset}
-					className="search-bar-button"
-					aria-label="Reset Search"
-				>
-					<img src={Close} alt="Close" className="search-icon" />
-				</button>
-			) : (
-				<button type="submit" className="search-bar-button" aria-label="Search">
-					<img src={Search} alt="Search" className="search-icon" />
-				</button>
-			)}
+			<SearchButton hasQuery={hasQuery} handleReset={handleReset} />
 		</form>
 	);
 };
 
-export default SearchBar;
+export default memo(SearchBar);
