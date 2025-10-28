@@ -1,22 +1,33 @@
-import React from 'react';
+import {
+	Children,
+	useCallback,
+	useEffect,
+	useMemo,
+	useRef,
+	useState,
+	type FC,
+	type ReactNode,
+} from 'react';
 import Loading from './Loading';
 
 type Props = {
-	children: React.ReactNode | React.ReactNode[];
+	children: ReactNode | ReactNode[];
 	className?: string;
-	pageSize?: number; // default: 15
-	// Controlled mode (for server/external state fetching):
-	// Pass onLoadMore + isLoading + hasMore. The component will call onLoadMore when reaching the end.
-	onLoadMore?: (nextPage: number, pageSize: number) => Promise<void> | void;
+	pageSize?: number;
+	onLoadMore?: () => Promise<void> | void;
 	isLoading?: boolean;
 	hasMore?: boolean;
-	// IntersectionObserver fine-tuning
-	rootMargin?: string; // prefetch before the end (e.g., '0px 0px 600px 0px')
+	rootMargin?: string;
 	threshold?: number;
-	loader?: React.ReactNode;
+	loader?: ReactNode;
 };
 
-const InfiniteScrolling: React.FC<Props> = ({
+/**
+ * InfiniteScrolling component.
+ * SRP: Only handles scroll detection and triggers load.
+ * Parent controls data/state (Dependency Inversion).
+ */
+const InfiniteScrolling: FC<Props> = ({
 	children,
 	className = '',
 	pageSize = 15,
@@ -27,64 +38,59 @@ const InfiniteScrolling: React.FC<Props> = ({
 	threshold = 0.01,
 	loader,
 }) => {
-	const childrenArray = React.Children.toArray(children);
+	const childrenArray = Children.toArray(children);
 	const controlled = typeof onLoadMore === 'function';
 
-	const [visibleCount, setVisibleCount] = React.useState(() =>
+	// Uncontrolled mode: slice children locally
+	const [visibleCount, setVisibleCount] = useState(() =>
 		controlled ? childrenArray.length : Math.min(pageSize, childrenArray.length)
 	);
-	const [localLoading, setLocalLoading] = React.useState(false);
-	const sentinelRef = React.useRef<HTMLDivElement | null>(null);
-	const fetchingRef = React.useRef(false);
-	const pageRef = React.useRef(1);
+	const [localLoading, setLocalLoading] = useState(false);
 
-	// Adjust when the list changes
-	React.useEffect(() => {
-		if (controlled) return; // parent controls the total displayed
+	const sentinelRef = useRef<HTMLDivElement | null>(null);
+	const loadingRef = useRef(false);
+
+	// Sync visible count when children change (uncontrolled)
+	useEffect(() => {
+		if (controlled) return;
 		setVisibleCount((v) =>
-			Math.min(Math.max(v, pageSize), childrenArray.length || 0)
+			Math.min(Math.max(v, pageSize), childrenArray.length)
 		);
 	}, [childrenArray.length, controlled, pageSize]);
 
-	const visibleChildren = React.useMemo(() => {
-		return controlled
-			? childrenArray // in controlled mode, render everything the parent already provided
-			: childrenArray.slice(0, visibleCount);
+	const visibleChildren = useMemo(() => {
+		return controlled ? childrenArray : childrenArray.slice(0, visibleCount);
 	}, [childrenArray, controlled, visibleCount]);
 
-	const maybeLoadMore = React.useCallback(() => {
-		if (fetchingRef.current) return;
+	// Stable load trigger
+	const triggerLoad = useCallback(() => {
+		if (loadingRef.current) return;
 
 		if (controlled) {
 			if (!hasMore || isLoading) return;
-			fetchingRef.current = true;
-			const nextPage = pageRef.current + 1;
-			Promise.resolve(onLoadMore?.(nextPage, pageSize))
+			loadingRef.current = true;
+			Promise.resolve(onLoadMore?.())
 				.catch(() => {})
 				.finally(() => {
-					pageRef.current = nextPage;
-					fetchingRef.current = false;
+					loadingRef.current = false;
 				});
 			return;
 		}
 
-		// Uncontrolled mode: just release more children already in memory
+		// Uncontrolled: load more from local array
 		const canGrow = visibleCount < childrenArray.length;
 		if (!canGrow || localLoading) return;
 
-		fetchingRef.current = true;
+		loadingRef.current = true;
 		setLocalLoading(true);
 
 		const finalize = () => {
 			setVisibleCount((v) => Math.min(v + pageSize, childrenArray.length));
 			setLocalLoading(false);
-			fetchingRef.current = false;
+			loadingRef.current = false;
 		};
 
-		if (
-			'requestIdleCallback' in window &&
-			typeof window.requestIdleCallback === 'function'
-		) {
+		if ('requestIdleCallback' in window) {
 			window.requestIdleCallback(() => setTimeout(finalize, 0), {
 				timeout: 200,
 			});
@@ -102,29 +108,31 @@ const InfiniteScrolling: React.FC<Props> = ({
 		localLoading,
 	]);
 
-	React.useEffect(() => {
+	// IntersectionObserver setup
+	useEffect(() => {
 		const el = sentinelRef.current;
 		if (!el) return;
 
 		const observer = new IntersectionObserver(
 			(entries) => {
-				if (entries[0]?.isIntersecting) {
-					maybeLoadMore();
-				}
+				if (entries[0]?.isIntersecting) triggerLoad();
 			},
 			{ root: null, rootMargin, threshold }
 		);
 
 		observer.observe(el);
-		return () => observer.disconnect();
-	}, [maybeLoadMore, rootMargin, threshold]);
+		return () => {
+			observer.disconnect();
+			loadingRef.current = false; // cleanup on unmount
+		};
+	}, [triggerLoad, rootMargin, threshold]);
 
 	const showLoader = controlled ? isLoading : localLoading;
 
 	return (
 		<div className={className}>
 			{visibleChildren}
-			{showLoader ? loader ?? <Loading /> : null}
+			{showLoader && (loader ?? <Loading />)}
 			<div ref={sentinelRef} aria-hidden="true" className="h-px w-full" />
 		</div>
 	);
