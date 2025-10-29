@@ -1,19 +1,9 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { metMuseumApi } from '@/services/metMuseumApi';
-import type { ArtworkItem } from '@/types/metMuseum';
+import { transformToArtworkItem } from '@/utils/transformers';
 
 const PAGE_SIZE = 15;
 const DEFAULT_SEARCH = 'painting';
-
-const transformToArtworkItem = (
-	details: Awaited<ReturnType<typeof metMuseumApi.getObjectDetails>>
-): ArtworkItem => ({
-	id: details.objectID,
-	title: details.title || 'Untitled',
-	artist: details.artistDisplayName || 'Unknown Artist',
-	date: details.objectEndDate || 'Unknown Date',
-	imageUrl: details.primaryImageSmall || details.primaryImage || '',
-});
 
 export const useMetMuseumArtworks = (
 	searchQuery: string = '',

@@ -8,6 +8,7 @@
 /* Import custom layers */
 @import './base.css';
 @import './components/components.css';
+@import './pages/pages.css';
 @import './theme.css';
 
 @custom-variant dark (&:where(.dark, .dark *));

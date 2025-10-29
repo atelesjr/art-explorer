@@ -10,6 +10,6 @@
 	}
 
 	.container-page {
-		@apply container min-h-screen w-full pt-[70px] sm:pt-[90px] px-6 mx-auto;
+		@apply container min-h-screen w-full py-[70px] sm:pt-[90px] px-6 mx-auto mb-10;
 	}
 }

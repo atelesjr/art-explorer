@@ -19,27 +19,24 @@ const RenderImage = ({
 
 	if (isLoading) {
 		return (
-			<div className="container mx-auto p-4">
-				<p className="text-center">Loading...</p>
+			<div className="render-image-loading">
+				<p>Loading...</p>
 			</div>
 		);
 	}
 
+	const isLargeLoadedSmall = largeLoaded ? 'opacity-0' : 'opacity-100';
+	const isLargeLoadedLarge = largeLoaded ? 'opacity-100' : 'opacity-0';
+
 	return (
-		<div className="flex items-center justify-center">
-			<div
-				className="relative w-full max-w-[770px] h-[470px] bg-gray-100 rounded-lg overflow-hidden"
-				aria-busy={!largeLoaded}
-			>
+		<div className="flex items-center justify-center order-1">
+			<div className="render-image-wrapper" aria-busy={!largeLoaded}>
 				{/* Loading overlay (spinner + pulse) */}
 				{!(smallLoaded || largeLoaded) && (
-					<div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 transition-opacity duration-200">
-						<span
-							aria-hidden
-							className="w-12 h-12 rounded-full border-4 border-gray-300 border-t-gray-600 animate-spin"
-						/>
-						<div className="w-3/4 h-3 rounded bg-gray-200 animate-pulse" />
-						<div className="w-1/2 h-3 rounded bg-gray-200 animate-pulse" />
+					<div className="render-image-overlay">
+						<span aria-hidden="true" />
+						<div className="render-image-overlay-large" />
+						<div className="render-image-overlay-small" />
 					</div>
 				)}
 
@@ -50,9 +47,7 @@ const RenderImage = ({
 						alt={artwork.title || 'Artwork'}
 						width={770}
 						height={470}
-						className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-200 blur-sm scale-105 ${
-							largeLoaded ? 'opacity-0' : 'opacity-100'
-						}`}
+						className={` render-image-small ${isLargeLoadedSmall}`}
 						loading="eager"
 						decoding="async"
 						fetchPriority="high"
@@ -67,9 +62,7 @@ const RenderImage = ({
 						alt={artwork.title || 'Artwork'}
 						width={770}
 						height={470}
-						className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-300 ${
-							largeLoaded ? 'opacity-100' : 'opacity-0'
-						}`}
+						className={` render-image-large ${isLargeLoadedLarge}`}
 						onLoad={() => setLargeLoaded(true)}
 						loading="eager"
 						decoding="async"
@@ -78,9 +71,7 @@ const RenderImage = ({
 				)}
 
 				{!smallSrc && !largeSrc && (
-					<div className="absolute inset-0 flex items-center justify-center text-gray-400">
-						No image available
-					</div>
+					<div className="render-image-error">No image available</div>
 				)}
 			</div>
 		</div>

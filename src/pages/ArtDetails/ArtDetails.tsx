@@ -23,10 +23,8 @@ export default function ArtDetails() {
 
 	if (error || !artwork) {
 		return (
-			<div className="container-page flex flex-col items-center justify-center">
-				<p className="text-center text-red-600">
-					Error loading artwork details
-				</p>
+			<div className="container-page art-details-error">
+				<p className="art-details-error-p">Error loading artwork details</p>
 				<BackButton />
 			</div>
 		);
@@ -35,24 +33,20 @@ export default function ArtDetails() {
 	return (
 		<div className="container-page">
 			<BackButton />
-
-			<div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-				<div className="space-y-6">
-					<div>
-						<h1 className="text-3xl font-bold mb-2">
-							{artwork.title || 'Untitled'}
-						</h1>
-					</div>
-
+			<div className="art-details">
+				<div className="art-details-info">
+					<h1 className="art-details-title">{artwork.title || 'Untitled'}</h1>
 					<Details artwork={artwork} />
-
-					<div className="">
-						<ButtonFavorite artworkId={Number(id)} />
-					</div>
+					<ButtonFavorite artworkId={Number(id)} />
 				</div>
 
 				{/* Image Area: 770x470, blur-up small → fade-in large */}
-				<RenderImage artwork={artwork} isLoading={isLoading} />
+				<div className="art-details-image">
+					<h1 className="art-details-title-mobile">
+						{artwork.title || 'Untitled'}
+					</h1>
+					<RenderImage artwork={artwork} isLoading={isLoading} />
+				</div>
 			</div>
 		</div>
 	);

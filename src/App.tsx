@@ -1,7 +1,7 @@
 import { Header } from './components/Header/Header';
 import Home from './pages/Home';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Favorites from '@/pages/Favorites';
+import Favorites from '@/pages/Favorites/Favorites';
 import ArtDetails from '@/pages/ArtDetails/ArtDetails';
 
 function App() {
