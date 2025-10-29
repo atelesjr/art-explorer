@@ -1,27 +1,22 @@
 {
-	"compilerOptions": {
-		"target": "ESNext", // good default for modern React
-		"module": "ESNext",
-		"lib": ["DOM", "DOM.Iterable", "ESNext"],
-		"jsx": "react-jsx",
-		"esModuleInterop": true,
-		"allowSyntheticDefaultImports": true,
-		"strict": true, // good practice for type safety
-		"skipLibCheck": true,
-		"forceConsistentCasingInFileNames": true,
-		"moduleResolution": "bundler",
-		"baseUrl": ".",
-		"paths": {
-			"@/*": ["src/*"]
-		},
+  "compilerOptions": {
+    "target": "ESNext", // good default for modern React
+    "module": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true, // good practice for type safety
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "bundler",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
 
-		"types": ["jest", "@testing-library/jest-dom"]
-	},
-	"include": ["src", "src/types"],
-	"exclude": ["node_modules", "dist"],
-
-	"references": [
-		{ "path": "./tsconfig.app.json" },
-		{ "path": "./tsconfig.node.json" }
-	]
+    "types": ["jest", "@testing-library/jest-dom"]
+  },
+  "include": ["src", "src/types"],
+  "exclude": ["node_modules", "dist", "build", "coverage"]
 }

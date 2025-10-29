@@ -8,7 +8,9 @@
 		"build": "tsc -b && vite build",
 		"lint": "eslint .",
 		"preview": "vite preview",
-		"type-check": "tsc --noEmit"
+		"type-check": "tsc --noEmit",
+		"clean": "node -e \"require('fs').rmSync('dist', {recursive: true, force: true})\"",
+		"prebuild": "npm run clean"
 	},
 	"dependencies": {
 		"@tailwindcss/vite": "^4.1.15",
