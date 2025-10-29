@@ -2,6 +2,8 @@
 
 A modern web application for exploring artworks from The Metropolitan Museum of Art collection. Built with React, TypeScript, and Tailwind CSS.
 
+- Vercel Link: [https://art-explorer-nine.vercel.app/]
+
 ## 🎨 Features
 
 - **Browse Artworks**: Explore thousands of artworks with infinite scroll
@@ -234,17 +236,6 @@ npm run preview
 - API response times can vary
 - Search is case-insensitive for better UX
 
-## 🔮 Future Enhancements
-
-- [ ] Advanced filters (date range, medium, department)
-- [ ] Collections/folders for organizing favorites
-- [ ] Share artwork links
-- [ ] Print-friendly detail pages
-- [ ] PWA support (offline access)
-- [ ] Multi-language support
-- [ ] Artwork comparison view
-- [ ] Virtual exhibitions
-
 ## 📄 License
 
 This project is for educational/portfolio purposes.
@@ -252,11 +243,10 @@ Artwork data provided by [The Metropolitan Museum of Art Collection API](https:/
 
 ## 👤 Author
 
-**Agostinho Teles Jr**
+**Agostinho Ferreira Teles Jr.**
 
-- Portfolio: [your-portfolio-url]
-- LinkedIn: [your-linkedin-url]
-- GitHub: [your-github-url]
+- LinkedIn: [https://www.linkedin.com/in/atelesjr/]
+- GitHub: [https://github.com/atelesjr]
 
 ## 🙏 Acknowledgments
 
