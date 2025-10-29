@@ -4,7 +4,7 @@
 
 @layer component {
 	.btn-back {
-		@apply inline-flex items-center gap-2 mb-4 hover:opacity-80 h-11 px-3 rounded
+		@apply inline-flex items-center gap-2 mb-4 hover:opacity-80 h-11 rounded
       focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
       focus-visible:outline-[--color-met-red-darker] cursor-pointer;
 	}
