@@ -1,13 +1,15 @@
 import type { GalleryProps } from '@/types/gallery';
 import GalleryCards from './GalleryCards';
 import GalleryStates from './GalleryStates';
+import GalleryErrorFallback from './GalleryErrorFallback';
 import InfiniteScrolling from '@/components/InfiniteScrolling/InfiniteScrolling';
+import ErrorBoundary from '@/components/ErrorBoundary/ErrorBoundary';
 import { useGalleryData } from '@/hooks/useGalleryData';
 import { useGalleryCallbacks } from '@/hooks/useGalleryCallbacks';
 
 const PAGE_SIZE = 15;
 
-const Gallery = ({
+const GalleryContent = ({
 	isLoading = false,
 	className = '',
 	searchQuery = '',
@@ -78,6 +80,14 @@ const Gallery = ({
 		<section className={`gallery-container ${className}`}>
 			{renderContent()}
 		</section>
+	);
+};
+
+const Gallery = (props: GalleryProps) => {
+	return (
+		<ErrorBoundary fallback={<GalleryErrorFallback />}>
+			<GalleryContent {...props} />
+		</ErrorBoundary>
 	);
 };
 

@@ -2,6 +2,7 @@
 @import './gallery.css';
 @import './searchBar.css';
 @import './buttons/buttons.css';
+@import './errorBoundary.css';
 
 @layer components {
 	/* Container --------------------------------*/
