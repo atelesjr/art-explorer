@@ -41,47 +41,42 @@ const Gallery = ({
 		isDefaultSearch,
 	});
 
-	// Render states
-	if (loading && displayItems.length === 0) {
-		return (
-			<section className={`gallery-container ${className}`}>
-				<GalleryStates type="loading" pageSize={PAGE_SIZE} />
-			</section>
-		);
-	}
+	const renderContent = () => {
+		// Loading state
+		if (loading && displayItems.length === 0) {
+			return <GalleryStates type="loading" pageSize={PAGE_SIZE} />;
+		}
 
-	if (error) {
-		return (
-			<section className={`gallery-container ${className}`}>
-				<GalleryStates type="error" />
-			</section>
-		);
-	}
+		// Error state
+		if (error) {
+			return <GalleryStates type="error" />;
+		}
 
-	if (!loading && displayItems.length === 0) {
-		return (
-			<section className={`gallery-container ${className}`}>
-				<GalleryStates type="empty" />
-			</section>
-		);
-	}
+		// Empty state
+		if (!loading && displayItems.length === 0) {
+			return <GalleryStates type="empty" />;
+		}
 
-	const cards = <GalleryCards displayItems={displayItems} />;
+		// Success state with data
+		const cards = <GalleryCards displayItems={displayItems} />;
+
+		return isExternal ? (
+			cards
+		) : (
+			<InfiniteScrolling
+				pageSize={PAGE_SIZE}
+				isLoading={isFetchingNextPage}
+				hasMore={hasNextPage}
+				onLoadMore={loadMore}
+			>
+				{cards}
+			</InfiniteScrolling>
+		);
+	};
 
 	return (
 		<section className={`gallery-container ${className}`}>
-			{isExternal ? (
-				cards
-			) : (
-				<InfiniteScrolling
-					pageSize={PAGE_SIZE}
-					isLoading={isFetchingNextPage}
-					hasMore={hasNextPage}
-					onLoadMore={loadMore}
-				>
-					{cards}
-				</InfiniteScrolling>
-			)}
+			{renderContent()}
 		</section>
 	);
 };
