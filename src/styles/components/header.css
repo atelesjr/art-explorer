@@ -6,7 +6,6 @@
     fixed  z-1000
     h-15 sm:h-20 p-4 bg-met-red dark:bg-met-red-dark text-white shadow-md w-full;
 	}
-
 	.header-navigation {
 		@apply hidden sm:flex items-center gap-4;
 	}
@@ -16,6 +15,11 @@
 	}
 
 	/* Navigation */
+
+	.nav-content {
+		@apply flex flex-col sm:flex-row gap-y-5 sm:gap-x-4 pt-1;
+	}
+
 	.nav-link {
 		@apply flex items-center cursor-pointer gap-1 hover:opacity-80;
 	}

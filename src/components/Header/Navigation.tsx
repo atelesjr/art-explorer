@@ -8,9 +8,7 @@ interface NavigationProps {
 
 export function Navigation({ className = '' }: NavigationProps) {
 	return (
-		<nav
-			className={`flex flex-col sm:flex-row gap-y-5 sm:gap-x-4 pt-1 ${className}`}
-		>
+		<nav className={`nav-content ${className}`}>
 			<NavLink to="/" className="nav-link">
 				<img src={HomeSVG} alt="Home" className="nav-img" />
 				<span className="nav-font">Home</span>
