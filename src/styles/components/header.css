@@ -55,4 +55,8 @@
       shadow-lg
       bg-met-red dark:bg-met-red-dark text-white;
 	}
+
+	.menu-drawer-theme {
+		@apply mt-4 w-full flex justify-end;
+	}
 }
