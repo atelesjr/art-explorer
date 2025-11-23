@@ -18,7 +18,7 @@ if (typeof (globalThis as unknown as { TextEncoder?: unknown }).TextEncoder === 
 		for (let i = 0; i < data.length; i += 1) s += String.fromCharCode(data[i]);
 		try {
 			return decodeURIComponent(s.split('').map((c) => `%${c.charCodeAt(0).toString(16).padStart(2, '0')}`).join(''));
-		} catch (_e) {
+		} catch {
 			return s;
 		}
 	};
@@ -30,9 +30,11 @@ if (typeof (globalThis as unknown as { TextEncoder?: unknown }).TextEncoder === 
 	}
 
 	class PolyTextDecoder {
-		decode(input?: ArrayBuffer | ArrayBufferView, _options?: TextDecoderOptions): string {
+		decode(input?: ArrayBuffer | ArrayBufferView, options?: TextDecoderOptions): string {
 			if (!input) return '';
 			const uint8 = input instanceof Uint8Array ? input : new Uint8Array(input as ArrayBuffer);
+			// reference options to satisfy lint rules when it's unused in this polyfill
+			void options;
 			return utf8Decode(uint8);
 		}
 	}
