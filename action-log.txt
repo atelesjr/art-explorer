@@ -1,0 +1,713 @@
+﻿2025-11-23T21:23:47.0067854Z Current runner version: '2.329.0'
+2025-11-23T21:23:47.0101663Z ##[group]Runner Image Provisioner
+2025-11-23T21:23:47.0102875Z Hosted Compute Agent
+2025-11-23T21:23:47.0103676Z Version: 20251016.436
+2025-11-23T21:23:47.0104778Z Commit: 8ab8ac8bfd662a3739dab9fe09456aba92132568
+2025-11-23T21:23:47.0105861Z Build Date: 2025-10-15T20:44:12Z
+2025-11-23T21:23:47.0106796Z ##[endgroup]
+2025-11-23T21:23:47.0107740Z ##[group]Operating System
+2025-11-23T21:23:47.0108743Z Ubuntu
+2025-11-23T21:23:47.0109588Z 24.04.3
+2025-11-23T21:23:47.0110380Z LTS
+2025-11-23T21:23:47.0111309Z ##[endgroup]
+2025-11-23T21:23:47.0112270Z ##[group]Runner Image
+2025-11-23T21:23:47.0113366Z Image: ubuntu-24.04
+2025-11-23T21:23:47.0114275Z Version: 20251112.124.1
+2025-11-23T21:23:47.0116144Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20251112.124/images/ubuntu/Ubuntu2404-Readme.md
+2025-11-23T21:23:47.0118923Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20251112.124
+2025-11-23T21:23:47.0121043Z ##[endgroup]
+2025-11-23T21:23:47.0122927Z ##[group]GITHUB_TOKEN Permissions
+2025-11-23T21:23:47.0125605Z Contents: read
+2025-11-23T21:23:47.0126542Z Metadata: read
+2025-11-23T21:23:47.0127865Z Packages: read
+2025-11-23T21:23:47.0128928Z ##[endgroup]
+2025-11-23T21:23:47.0132471Z Secret source: Actions
+2025-11-23T21:23:47.0134128Z Prepare workflow directory
+2025-11-23T21:23:47.0612075Z Prepare all required actions
+2025-11-23T21:23:47.0671476Z Getting action download info
+2025-11-23T21:23:47.3167509Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+2025-11-23T21:23:47.5862009Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2025-11-23T21:23:47.7338636Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2025-11-23T21:23:47.9500343Z Complete job name: Lint / Type-check / Test / Build (20.x)
+2025-11-23T21:23:48.0316135Z ##[group]Run actions/checkout@v4
+2025-11-23T21:23:48.0317669Z with:
+2025-11-23T21:23:48.0318391Z   repository: atelesjr/art-explorer
+2025-11-23T21:23:48.0319603Z   token: ***
+2025-11-23T21:23:48.0320286Z   ssh-strict: true
+2025-11-23T21:23:48.0321185Z   ssh-user: git
+2025-11-23T21:23:48.0321927Z   persist-credentials: true
+2025-11-23T21:23:48.0323215Z   clean: true
+2025-11-23T21:23:48.0324406Z   sparse-checkout-cone-mode: true
+2025-11-23T21:23:48.0325931Z   fetch-depth: 1
+2025-11-23T21:23:48.0327089Z   fetch-tags: false
+2025-11-23T21:23:48.0328295Z   show-progress: true
+2025-11-23T21:23:48.0329496Z   lfs: false
+2025-11-23T21:23:48.0330768Z   submodules: false
+2025-11-23T21:23:48.0331967Z   set-safe-directory: true
+2025-11-23T21:23:48.0333200Z ##[endgroup]
+2025-11-23T21:23:48.1417091Z Syncing repository: atelesjr/art-explorer
+2025-11-23T21:23:48.1419737Z ##[group]Getting Git version info
+2025-11-23T21:23:48.1421526Z Working directory is '/home/runner/work/art-explorer/art-explorer'
+2025-11-23T21:23:48.1423485Z [command]/usr/bin/git version
+2025-11-23T21:23:48.1484627Z git version 2.51.2
+2025-11-23T21:23:48.1511291Z ##[endgroup]
+2025-11-23T21:23:48.1526042Z Temporarily overriding HOME='/home/runner/work/_temp/2a87c97f-7faa-459c-88d9-8a861df4b220' before making global git config changes
+2025-11-23T21:23:48.1528837Z Adding repository directory to the temporary git global config as a safe directory
+2025-11-23T21:23:48.1538067Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/art-explorer/art-explorer
+2025-11-23T21:23:48.1574550Z Deleting the contents of '/home/runner/work/art-explorer/art-explorer'
+2025-11-23T21:23:48.1577874Z ##[group]Initializing the repository
+2025-11-23T21:23:48.1581847Z [command]/usr/bin/git init /home/runner/work/art-explorer/art-explorer
+2025-11-23T21:23:48.1721747Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-11-23T21:23:48.1726125Z hint: is subject to change. To configure the initial branch name to use in all
+2025-11-23T21:23:48.1730037Z hint: of your new repositories, which will suppress this warning, call:
+2025-11-23T21:23:48.1733400Z hint:
+2025-11-23T21:23:48.1734894Z hint: 	git config --global init.defaultBranch <name>
+2025-11-23T21:23:48.1736899Z hint:
+2025-11-23T21:23:48.1738581Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-11-23T21:23:48.1741736Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-11-23T21:23:48.1743500Z hint:
+2025-11-23T21:23:48.1744628Z hint: 	git branch -m <name>
+2025-11-23T21:23:48.1745964Z hint:
+2025-11-23T21:23:48.1747854Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2025-11-23T21:23:48.1750870Z Initialized empty Git repository in /home/runner/work/art-explorer/art-explorer/.git/
+2025-11-23T21:23:48.1755723Z [command]/usr/bin/git remote add origin https://github.com/atelesjr/art-explorer
+2025-11-23T21:23:48.1786899Z ##[endgroup]
+2025-11-23T21:23:48.1789848Z ##[group]Disabling automatic garbage collection
+2025-11-23T21:23:48.1792738Z [command]/usr/bin/git config --local gc.auto 0
+2025-11-23T21:23:48.1823793Z ##[endgroup]
+2025-11-23T21:23:48.1825774Z ##[group]Setting up auth
+2025-11-23T21:23:48.1831736Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-11-23T21:23:48.1867838Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-11-23T21:23:48.5207549Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-11-23T21:23:48.5243169Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-11-23T21:23:48.5466097Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2025-11-23T21:23:48.5495366Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2025-11-23T21:23:48.5727930Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-11-23T21:23:48.5761205Z ##[endgroup]
+2025-11-23T21:23:48.5769050Z ##[group]Fetching the repository
+2025-11-23T21:23:48.5770082Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +f653f1cfd85e11f783c47ce3b03fe998212f2d95:refs/remotes/origin/main
+2025-11-23T21:23:48.7402364Z From https://github.com/atelesjr/art-explorer
+2025-11-23T21:23:48.7403913Z  * [new ref]         f653f1cfd85e11f783c47ce3b03fe998212f2d95 -> origin/main
+2025-11-23T21:23:48.7437944Z ##[endgroup]
+2025-11-23T21:23:48.7438792Z ##[group]Determining the checkout info
+2025-11-23T21:23:48.7439923Z ##[endgroup]
+2025-11-23T21:23:48.7446034Z [command]/usr/bin/git sparse-checkout disable
+2025-11-23T21:23:48.7489533Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2025-11-23T21:23:48.7518637Z ##[group]Checking out the ref
+2025-11-23T21:23:48.7526322Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2025-11-23T21:23:48.7618768Z Switched to a new branch 'main'
+2025-11-23T21:23:48.7621443Z branch 'main' set up to track 'origin/main'.
+2025-11-23T21:23:48.7629741Z ##[endgroup]
+2025-11-23T21:23:48.7668358Z [command]/usr/bin/git log -1 --format=%H
+2025-11-23T21:23:48.7691606Z f653f1cfd85e11f783c47ce3b03fe998212f2d95
+2025-11-23T21:23:48.7931766Z ##[group]Run actions/setup-node@v4
+2025-11-23T21:23:48.7932194Z with:
+2025-11-23T21:23:48.7932522Z   node-version: 20.x
+2025-11-23T21:23:48.7932848Z   cache: npm
+2025-11-23T21:23:48.7933160Z   always-auth: false
+2025-11-23T21:23:48.7933485Z   check-latest: false
+2025-11-23T21:23:48.7933950Z   token: ***
+2025-11-23T21:23:48.7934267Z ##[endgroup]
+2025-11-23T21:23:49.0128881Z Found in cache @ /opt/hostedtoolcache/node/20.19.5/x64
+2025-11-23T21:23:49.0130148Z ##[group]Environment details
+2025-11-23T21:23:51.1762473Z node: v20.19.5
+2025-11-23T21:23:51.1764011Z npm: 10.8.2
+2025-11-23T21:23:51.1764399Z yarn: 1.22.22
+2025-11-23T21:23:51.1765826Z ##[endgroup]
+2025-11-23T21:23:51.1786300Z [command]/opt/hostedtoolcache/node/20.19.5/x64/bin/npm config get cache
+2025-11-23T21:23:51.4399606Z /home/runner/.npm
+2025-11-23T21:23:51.5672655Z npm cache is not found
+2025-11-23T21:23:51.5813430Z ##[group]Run set -e
+2025-11-23T21:23:51.5813745Z [36;1mset -e[0m
+2025-11-23T21:23:51.5813957Z [36;1mif npm ci; then[0m
+2025-11-23T21:23:51.5814188Z [36;1m  echo "npm ci succeeded"[0m
+2025-11-23T21:23:51.5814424Z [36;1melse[0m
+2025-11-23T21:23:51.5814679Z [36;1m  echo "npm ci failed — falling back to npm install"[0m
+2025-11-23T21:23:51.5814985Z [36;1m  npm install[0m
+2025-11-23T21:23:51.5815187Z [36;1mfi[0m
+2025-11-23T21:23:51.5862462Z shell: /usr/bin/bash -e {0}
+2025-11-23T21:23:51.5862738Z ##[endgroup]
+2025-11-23T21:23:54.5786962Z npm error code EUSAGE
+2025-11-23T21:23:54.5787367Z npm error
+2025-11-23T21:23:54.5788338Z npm error `npm ci` can only install packages when your package.json and package-lock.json or npm-shrinkwrap.json are in sync. Please update your lock file with `npm install` before continuing.
+2025-11-23T21:23:54.5789042Z npm error
+2025-11-23T21:23:54.5789344Z npm error Missing: ts-node@10.9.2 from lock file
+2025-11-23T21:23:54.5789869Z npm error Missing: @cspotcode/source-map-support@0.8.1 from lock file
+2025-11-23T21:23:54.5790335Z npm error Missing: @tsconfig/node10@1.0.12 from lock file
+2025-11-23T21:23:54.5791057Z npm error Missing: @tsconfig/node12@1.0.11 from lock file
+2025-11-23T21:23:54.5791459Z npm error Missing: @tsconfig/node14@1.0.3 from lock file
+2025-11-23T21:23:54.5791862Z npm error Missing: @tsconfig/node16@1.0.4 from lock file
+2025-11-23T21:23:54.5792235Z npm error Missing: acorn-walk@8.3.4 from lock file
+2025-11-23T21:23:54.5792566Z npm error Missing: arg@4.1.3 from lock file
+2025-11-23T21:23:54.5792943Z npm error Missing: create-require@1.1.1 from lock file
+2025-11-23T21:23:54.5793346Z npm error Missing: diff@4.0.2 from lock file
+2025-11-23T21:23:54.5793731Z npm error Missing: v8-compile-cache-lib@3.0.1 from lock file
+2025-11-23T21:23:54.5794100Z npm error Missing: yn@3.1.1 from lock file
+2025-11-23T21:23:54.5794496Z npm error Missing: @jridgewell/trace-mapping@0.3.9 from lock file
+2025-11-23T21:23:54.5794813Z npm error
+2025-11-23T21:23:54.5795197Z npm error Clean install a project
+2025-11-23T21:23:54.5795565Z npm error
+2025-11-23T21:23:54.5795835Z npm error Usage:
+2025-11-23T21:23:54.5796104Z npm error npm ci
+2025-11-23T21:23:54.5796280Z npm error
+2025-11-23T21:23:54.5796460Z npm error Options:
+2025-11-23T21:23:54.5796887Z npm error [--install-strategy <hoisted|nested|shallow|linked>] [--legacy-bundling]
+2025-11-23T21:23:54.5797512Z npm error [--global-style] [--omit <dev|optional|peer> [--omit <dev|optional|peer> ...]]
+2025-11-23T21:23:54.5798428Z npm error [--include <prod|dev|optional|peer> [--include <prod|dev|optional|peer> ...]]
+2025-11-23T21:23:54.5799472Z npm error [--strict-peer-deps] [--foreground-scripts] [--ignore-scripts] [--no-audit]
+2025-11-23T21:23:54.5800343Z npm error [--no-bin-links] [--no-fund] [--dry-run]
+2025-11-23T21:23:54.5801383Z npm error [-w|--workspace <workspace-name> [-w|--workspace <workspace-name> ...]]
+2025-11-23T21:23:54.5802209Z npm error [-ws|--workspaces] [--include-workspace-root] [--install-links]
+2025-11-23T21:23:54.5802728Z npm error
+2025-11-23T21:23:54.5803252Z npm error aliases: clean-install, ic, install-clean, isntall-clean
+2025-11-23T21:23:54.5803745Z npm error
+2025-11-23T21:23:54.5804104Z npm error Run "npm help ci" for more info
+2025-11-23T21:23:54.5805049Z npm error A complete log of this run can be found in: /home/runner/.npm/_logs/2025-11-23T21_23_51_648Z-debug-0.log
+2025-11-23T21:23:54.5891283Z npm ci failed — falling back to npm install
+2025-11-23T21:23:57.6316586Z npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2025-11-23T21:23:58.9258898Z npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+2025-11-23T21:23:59.0041806Z npm warn deprecated browserslist@0.2.0: Browserslist 2 could fail on reading Browserslist >3.0 config used in other tools.
+2025-11-23T21:24:01.0430132Z 
+2025-11-23T21:24:01.0431008Z added 572 packages, and audited 573 packages in 6s
+2025-11-23T21:24:01.0431440Z 
+2025-11-23T21:24:01.0431737Z 103 packages are looking for funding
+2025-11-23T21:24:01.0516586Z   run `npm fund` for details
+2025-11-23T21:24:01.0518474Z 
+2025-11-23T21:24:01.0518872Z 3 moderate severity vulnerabilities
+2025-11-23T21:24:01.0519298Z 
+2025-11-23T21:24:01.0519668Z Some issues need review, and may require choosing
+2025-11-23T21:24:01.0520173Z a different dependency.
+2025-11-23T21:24:01.0520377Z 
+2025-11-23T21:24:01.0520542Z Run `npm audit` for details.
+2025-11-23T21:24:01.0774497Z ##[group]Run npm run type-check
+2025-11-23T21:24:01.0774835Z [36;1mnpm run type-check[0m
+2025-11-23T21:24:01.0807903Z shell: /usr/bin/bash -e {0}
+2025-11-23T21:24:01.0808143Z ##[endgroup]
+2025-11-23T21:24:01.1893822Z 
+2025-11-23T21:24:01.1894447Z > art-explorer@0.0.0 type-check
+2025-11-23T21:24:01.1895006Z > tsc --noEmit
+2025-11-23T21:24:01.1895209Z 
+2025-11-23T21:24:03.2684414Z ##[group]Run npm run lint
+2025-11-23T21:24:03.2684710Z [36;1mnpm run lint[0m
+2025-11-23T21:24:03.2717074Z shell: /usr/bin/bash -e {0}
+2025-11-23T21:24:03.2717340Z ##[endgroup]
+2025-11-23T21:24:03.3810450Z 
+2025-11-23T21:24:03.3811252Z > art-explorer@0.0.0 lint
+2025-11-23T21:24:03.3811728Z > eslint .
+2025-11-23T21:24:03.3811926Z 
+2025-11-23T21:24:04.9146126Z ##[group]Run npx jest --ci --runInBand
+2025-11-23T21:24:04.9146441Z [36;1mnpx jest --ci --runInBand[0m
+2025-11-23T21:24:04.9178596Z shell: /usr/bin/bash -e {0}
+2025-11-23T21:24:04.9178824Z env:
+2025-11-23T21:24:04.9178993Z   CI: true
+2025-11-23T21:24:04.9179154Z ##[endgroup]
+2025-11-23T21:24:10.7076444Z   console.error
+2025-11-23T21:24:10.7077150Z     Error: No QueryClient set, use QueryClientProvider to set one
+2025-11-23T21:24:10.7078405Z         at useQueryClient (/home/runner/work/art-explorer/art-explorer/node_modules/@tanstack/react-query/src/QueryClientProvider.tsx:18:11)
+2025-11-23T21:24:10.7079856Z         at useBaseQuery (/home/runner/work/art-explorer/art-explorer/node_modules/@tanstack/react-query/src/useBaseQuery.ts:54:18)
+2025-11-23T21:24:10.7081512Z         at useInfiniteQuery (/home/runner/work/art-explorer/art-explorer/node_modules/@tanstack/react-query/src/useInfiniteQuery.ts:76:10)
+2025-11-23T21:24:10.7083079Z         at useMetMuseumArtworks (/home/runner/work/art-explorer/art-explorer/src/hooks/useMetMuseumArtworks.ts:22:22)
+2025-11-23T21:24:10.7084403Z         at useGalleryData (/home/runner/work/art-explorer/art-explorer/src/hooks/useGalleryData.ts:31:26)
+2025-11-23T21:24:10.7085644Z         at GalleryContent (/home/runner/work/art-explorer/art-explorer/src/components/Gallery/Gallery.tsx:29:20)
+2025-11-23T21:24:10.7087272Z         at Object.react_stack_bottom_frame (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:25904:20)
+2025-11-23T21:24:10.7089026Z         at renderWithHooks (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:7662:22)
+2025-11-23T21:24:10.7091109Z         at updateFunctionComponent (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:10166:19)
+2025-11-23T21:24:10.7092924Z         at beginWork (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:11778:18)
+2025-11-23T21:24:10.7094657Z         at runWithFiberInDEV (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+2025-11-23T21:24:10.7096439Z         at performUnitOfWork (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:17641:22)
+2025-11-23T21:24:10.7098574Z         at workLoopSync (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:17469:41)
+2025-11-23T21:24:10.7100347Z         at renderRootSync (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:17450:11)
+2025-11-23T21:24:10.7102283Z         at performWorkOnRoot (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:16583:35)
+2025-11-23T21:24:10.7104215Z         at performWorkOnRootViaSchedulerTask (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:18957:7)
+2025-11-23T21:24:10.7105948Z         at flushActQueue (/home/runner/work/art-explorer/art-explorer/node_modules/react/cjs/react.development.js:590:34)
+2025-11-23T21:24:10.7107517Z         at process.env.NODE_ENV.exports.act (/home/runner/work/art-explorer/art-explorer/node_modules/react/cjs/react.development.js:884:10)
+2025-11-23T21:24:10.7109023Z         at /home/runner/work/art-explorer/art-explorer/node_modules/@testing-library/react/dist/act-compat.js:47:25
+2025-11-23T21:24:10.7110414Z         at renderRoot (/home/runner/work/art-explorer/art-explorer/node_modules/@testing-library/react/dist/pure.js:190:26)
+2025-11-23T21:24:10.7112102Z         at render (/home/runner/work/art-explorer/art-explorer/node_modules/@testing-library/react/dist/pure.js:292:10)
+2025-11-23T21:24:10.7113423Z         at Object.<anonymous> (/home/runner/work/art-explorer/art-explorer/src/App.test.tsx:7:9)
+2025-11-23T21:24:10.7115257Z         at Promise.finally.completed (/home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/jestAdapterInit.js:1557:28)
+2025-11-23T21:24:10.7116390Z         at new Promise (<anonymous>)
+2025-11-23T21:24:10.7117474Z         at callAsyncCircusFn (/home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/jestAdapterInit.js:1497:10)
+2025-11-23T21:24:10.7119053Z         at _callCircusTest (/home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/jestAdapterInit.js:1007:40)
+2025-11-23T21:24:10.7120796Z         at async _runTest (/home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/jestAdapterInit.js:947:3)
+2025-11-23T21:24:10.7122319Z         at async /home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/jestAdapterInit.js:849:7
+2025-11-23T21:24:10.7123915Z         at async _runTestsForDescribeBlock (/home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/jestAdapterInit.js:862:11)
+2025-11-23T21:24:10.7125725Z         at async _runTestsForDescribeBlock (/home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/jestAdapterInit.js:857:11)
+2025-11-23T21:24:10.7127390Z         at async run (/home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/jestAdapterInit.js:761:3)
+2025-11-23T21:24:10.7128975Z         at async runAndTransformResultsToJestFormat (/home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/jestAdapterInit.js:1918:21)
+2025-11-23T21:24:10.7129960Z         at async jestAdapter (/home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/runner.js:101:19)
+2025-11-23T21:24:10.7131023Z         at async runTestInternal (/home/runner/work/art-explorer/art-explorer/node_modules/jest-runner/build/index.js:275:16)
+2025-11-23T21:24:10.7131844Z         at async runTest (/home/runner/work/art-explorer/art-explorer/node_modules/jest-runner/build/index.js:343:7) {
+2025-11-23T21:24:10.7132488Z       [stack]: 'Error: No QueryClient set, use QueryClientProvider to set one\n' +
+2025-11-23T21:24:10.7133275Z         '    at useQueryClient (/home/runner/work/art-explorer/art-explorer/node_modules/@tanstack/react-query/src/QueryClientProvider.tsx:18:11)\n' +
+2025-11-23T21:24:10.7134221Z         '    at useBaseQuery (/home/runner/work/art-explorer/art-explorer/node_modules/@tanstack/react-query/src/useBaseQuery.ts:54:18)\n' +
+2025-11-23T21:24:10.7135151Z         '    at useInfiniteQuery (/home/runner/work/art-explorer/art-explorer/node_modules/@tanstack/react-query/src/useInfiniteQuery.ts:76:10)\n' +
+2025-11-23T21:24:10.7136246Z         '    at useMetMuseumArtworks (/home/runner/work/art-explorer/art-explorer/src/hooks/useMetMuseumArtworks.ts:22:22)\n' +
+2025-11-23T21:24:10.7137006Z         '    at useGalleryData (/home/runner/work/art-explorer/art-explorer/src/hooks/useGalleryData.ts:31:26)\n' +
+2025-11-23T21:24:10.7137743Z         '    at GalleryContent (/home/runner/work/art-explorer/art-explorer/src/components/Gallery/Gallery.tsx:29:20)\n' +
+2025-11-23T21:24:10.7138676Z         '    at Object.react_stack_bottom_frame (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:25904:20)\n' +
+2025-11-23T21:24:10.7139692Z         '    at renderWithHooks (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:7662:22)\n' +
+2025-11-23T21:24:10.7140899Z         '    at updateFunctionComponent (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:10166:19)\n' +
+2025-11-23T21:24:10.7141895Z         '    at beginWork (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:11778:18)\n' +
+2025-11-23T21:24:10.7142843Z         '    at runWithFiberInDEV (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:874:13)\n' +
+2025-11-23T21:24:10.7143968Z         '    at performUnitOfWork (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:17641:22)\n' +
+2025-11-23T21:24:10.7144944Z         '    at workLoopSync (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:17469:41)\n' +
+2025-11-23T21:24:10.7146370Z         '    at renderRootSync (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:17450:11)\n' +
+2025-11-23T21:24:10.7148305Z         '    at performWorkOnRoot (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:16583:35)\n' +
+2025-11-23T21:24:10.7150373Z         '    at performWorkOnRootViaSchedulerTask (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:18957:7)\n' +
+2025-11-23T21:24:10.7152444Z         '    at flushActQueue (/home/runner/work/art-explorer/art-explorer/node_modules/react/cjs/react.development.js:590:34)\n' +
+2025-11-23T21:24:10.7154122Z         '    at process.env.NODE_ENV.exports.act (/home/runner/work/art-explorer/art-explorer/node_modules/react/cjs/react.development.js:884:10)\n' +
+2025-11-23T21:24:10.7155719Z         '    at /home/runner/work/art-explorer/art-explorer/node_modules/@testing-library/react/dist/act-compat.js:47:25\n' +
+2025-11-23T21:24:10.7157203Z         '    at renderRoot (/home/runner/work/art-explorer/art-explorer/node_modules/@testing-library/react/dist/pure.js:190:26)\n' +
+2025-11-23T21:24:10.7158721Z         '    at render (/home/runner/work/art-explorer/art-explorer/node_modules/@testing-library/react/dist/pure.js:292:10)\n' +
+2025-11-23T21:24:10.7160029Z         '    at Object.<anonymous> (/home/runner/work/art-explorer/art-explorer/src/App.test.tsx:7:9)\n' +
+2025-11-23T21:24:10.7161766Z         '    at Promise.finally.completed (/home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/jestAdapterInit.js:1557:28)\n' +
+2025-11-23T21:24:10.7162921Z         '    at new Promise (<anonymous>)\n' +
+2025-11-23T21:24:10.7164119Z         '    at callAsyncCircusFn (/home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/jestAdapterInit.js:1497:10)\n' +
+2025-11-23T21:24:10.7165136Z         '    at _callCircusTest (/home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/jestAdapterInit.js:1007:40)\n' +
+2025-11-23T21:24:10.7166028Z         '    at async _runTest (/home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/jestAdapterInit.js:947:3)\n' +
+2025-11-23T21:24:10.7167122Z         '    at async /home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/jestAdapterInit.js:849:7\n' +
+2025-11-23T21:24:10.7168070Z         '    at async _runTestsForDescribeBlock (/home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/jestAdapterInit.js:862:11)\n' +
+2025-11-23T21:24:10.7169084Z         '    at async _runTestsForDescribeBlock (/home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/jestAdapterInit.js:857:11)\n' +
+2025-11-23T21:24:10.7169994Z         '    at async run (/home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/jestAdapterInit.js:761:3)\n' +
+2025-11-23T21:24:10.7171489Z         '    at async runAndTransformResultsToJestFormat (/home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/jestAdapterInit.js:1918:21)\n' +
+2025-11-23T21:24:10.7173196Z         '    at async jestAdapter (/home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/runner.js:101:19)\n' +
+2025-11-23T21:24:10.7174229Z         '    at async runTestInternal (/home/runner/work/art-explorer/art-explorer/node_modules/jest-runner/build/index.js:275:16)\n' +
+2025-11-23T21:24:10.7175026Z         '    at async runTest (/home/runner/work/art-explorer/art-explorer/node_modules/jest-runner/build/index.js:343:7)',
+2025-11-23T21:24:10.7175630Z       [message]: 'No QueryClient set, use QueryClientProvider to set one'
+2025-11-23T21:24:10.7175963Z     }
+2025-11-23T21:24:10.7176112Z     
+2025-11-23T21:24:10.7176385Z     The above error occurred in the <GalleryContent> component.
+2025-11-23T21:24:10.7176837Z     
+2025-11-23T21:24:10.7177291Z     React will try to recreate this component tree from scratch using the error boundary you provided, ErrorBoundary.
+2025-11-23T21:24:10.7177669Z 
+2025-11-23T21:24:10.7178104Z     [0m [90m  5 |[39m describe([32m'App'[39m[33m,[39m () [33m=>[39m {
+2025-11-23T21:24:10.7179284Z      [90m  6 |[39m 	it([32m'should render the Vite and React logos'[39m[33m,[39m () [33m=>[39m {
+2025-11-23T21:24:10.7180439Z     [31m[1m>[22m[39m[90m  7 |[39m 		render([33m<[39m[33mApp[39m [33m/[39m[33m>[39m)[33m;[39m
+2025-11-23T21:24:10.7181246Z      [90m    |[39m 		      [31m[1m^[22m[39m
+2025-11-23T21:24:10.7181847Z      [90m  8 |[39m 		expect(screen[33m.[39mgetByText([32m'Vite + React'[39m))[33m.[39mtoBeInTheDocument()[33m;[39m
+2025-11-23T21:24:10.7182329Z      [90m  9 |[39m 	})[33m;[39m
+2025-11-23T21:24:10.7182639Z      [90m 10 |[39m })[33m;[39m[0m
+2025-11-23T21:24:10.7182795Z 
+2025-11-23T21:24:10.7183121Z       at defaultOnCaughtError (node_modules/react-dom/cjs/react-dom-client.development.js:9410:17)
+2025-11-23T21:24:10.7183742Z       at logCaughtError (node_modules/react-dom/cjs/react-dom-client.development.js:9446:9)
+2025-11-23T21:24:10.7184335Z       at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+2025-11-23T21:24:10.7185099Z       at ErrorBoundary.inst.componentDidCatch.update.callback (node_modules/react-dom/cjs/react-dom-client.development.js:9493:11)
+2025-11-23T21:24:10.7185821Z       at callCallback (node_modules/react-dom/cjs/react-dom-client.development.js:7423:16)
+2025-11-23T21:24:10.7186402Z       at commitCallbacks (node_modules/react-dom/cjs/react-dom-client.development.js:7443:11)
+2025-11-23T21:24:10.7186991Z       at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+2025-11-23T21:24:10.7187601Z       at commitClassCallbacks (node_modules/react-dom/cjs/react-dom-client.development.js:13377:11)
+2025-11-23T21:24:10.7188278Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:14026:25)
+2025-11-23T21:24:10.7188993Z       at recursivelyTraverseLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15159:11)
+2025-11-23T21:24:10.7189689Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:13949:11)
+2025-11-23T21:24:10.7190754Z       at recursivelyTraverseLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15159:11)
+2025-11-23T21:24:10.7191491Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:14065:11)
+2025-11-23T21:24:10.7192186Z       at recursivelyTraverseLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15159:11)
+2025-11-23T21:24:10.7192889Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:13949:11)
+2025-11-23T21:24:10.7193596Z       at recursivelyTraverseLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15159:11)
+2025-11-23T21:24:10.7194288Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:14165:11)
+2025-11-23T21:24:10.7194980Z       at recursivelyTraverseLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15159:11)
+2025-11-23T21:24:10.7195681Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:13949:11)
+2025-11-23T21:24:10.7196385Z       at recursivelyTraverseLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15159:11)
+2025-11-23T21:24:10.7197072Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:13949:11)
+2025-11-23T21:24:10.7197768Z       at recursivelyTraverseLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15159:11)
+2025-11-23T21:24:10.7198465Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:14065:11)
+2025-11-23T21:24:10.7199299Z       at recursivelyTraverseLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15159:11)
+2025-11-23T21:24:10.7200002Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:14065:11)
+2025-11-23T21:24:10.7200954Z       at recursivelyTraverseLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15159:11)
+2025-11-23T21:24:10.7201680Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:14165:11)
+2025-11-23T21:24:10.7202374Z       at recursivelyTraverseLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15159:11)
+2025-11-23T21:24:10.7203070Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:14165:11)
+2025-11-23T21:24:10.7203766Z       at recursivelyTraverseLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15159:11)
+2025-11-23T21:24:10.7204462Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:13949:11)
+2025-11-23T21:24:10.7205160Z       at recursivelyTraverseLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15159:11)
+2025-11-23T21:24:10.7205859Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:13949:11)
+2025-11-23T21:24:10.7206548Z       at recursivelyTraverseLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15159:11)
+2025-11-23T21:24:10.7207259Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:13949:11)
+2025-11-23T21:24:10.7207964Z       at recursivelyTraverseLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15159:11)
+2025-11-23T21:24:10.7208654Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:14031:11)
+2025-11-23T21:24:10.7209302Z       at flushLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:18138:15)
+2025-11-23T21:24:10.7209886Z       at commitRoot (node_modules/react-dom/cjs/react-dom-client.development.js:17954:9)
+2025-11-23T21:24:10.7210472Z       at performWorkOnRoot (node_modules/react-dom/cjs/react-dom-client.development.js:16667:15)
+2025-11-23T21:24:10.7211380Z       at performWorkOnRootViaSchedulerTask (node_modules/react-dom/cjs/react-dom-client.development.js:18957:7)
+2025-11-23T21:24:10.7212193Z       at flushActQueue (node_modules/react/cjs/react.development.js:590:34)
+2025-11-23T21:24:10.7212727Z       at process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:884:10)
+2025-11-23T21:24:10.7213216Z       at node_modules/@testing-library/react/dist/act-compat.js:47:25
+2025-11-23T21:24:10.7213664Z       at renderRoot (node_modules/@testing-library/react/dist/pure.js:190:26)
+2025-11-23T21:24:10.7214103Z       at render (node_modules/@testing-library/react/dist/pure.js:292:10)
+2025-11-23T21:24:10.7214465Z       at Object.<anonymous> (src/App.test.tsx:7:9)
+2025-11-23T21:24:10.7214656Z 
+2025-11-23T21:24:10.7214767Z   console.error
+2025-11-23T21:24:10.7215176Z     ErrorBoundary caught an error: Error: No QueryClient set, use QueryClientProvider to set one
+2025-11-23T21:24:10.7215969Z         at useQueryClient (/home/runner/work/art-explorer/art-explorer/node_modules/@tanstack/react-query/src/QueryClientProvider.tsx:18:11)
+2025-11-23T21:24:10.7216871Z         at useBaseQuery (/home/runner/work/art-explorer/art-explorer/node_modules/@tanstack/react-query/src/useBaseQuery.ts:54:18)
+2025-11-23T21:24:10.7217759Z         at useInfiniteQuery (/home/runner/work/art-explorer/art-explorer/node_modules/@tanstack/react-query/src/useInfiniteQuery.ts:76:10)
+2025-11-23T21:24:10.7218605Z         at useMetMuseumArtworks (/home/runner/work/art-explorer/art-explorer/src/hooks/useMetMuseumArtworks.ts:22:22)
+2025-11-23T21:24:10.7219325Z         at useGalleryData (/home/runner/work/art-explorer/art-explorer/src/hooks/useGalleryData.ts:31:26)
+2025-11-23T21:24:10.7220131Z         at GalleryContent (/home/runner/work/art-explorer/art-explorer/src/components/Gallery/Gallery.tsx:29:20)
+2025-11-23T21:24:10.7221276Z         at Object.react_stack_bottom_frame (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:25904:20)
+2025-11-23T21:24:10.7222268Z         at renderWithHooks (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:7662:22)
+2025-11-23T21:24:10.7223245Z         at updateFunctionComponent (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:10166:19)
+2025-11-23T21:24:10.7224187Z         at beginWork (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:11778:18)
+2025-11-23T21:24:10.7225090Z         at runWithFiberInDEV (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+2025-11-23T21:24:10.7226031Z         at performUnitOfWork (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:17641:22)
+2025-11-23T21:24:10.7226958Z         at workLoopSync (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:17469:41)
+2025-11-23T21:24:10.7227874Z         at renderRootSync (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:17450:11)
+2025-11-23T21:24:10.7228810Z         at performWorkOnRoot (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:16583:35)
+2025-11-23T21:24:10.7229875Z         at performWorkOnRootViaSchedulerTask (/home/runner/work/art-explorer/art-explorer/node_modules/react-dom/cjs/react-dom-client.development.js:18957:7)
+2025-11-23T21:24:10.7230965Z         at flushActQueue (/home/runner/work/art-explorer/art-explorer/node_modules/react/cjs/react.development.js:590:34)
+2025-11-23T21:24:10.7231824Z         at process.env.NODE_ENV.exports.act (/home/runner/work/art-explorer/art-explorer/node_modules/react/cjs/react.development.js:884:10)
+2025-11-23T21:24:10.7232637Z         at /home/runner/work/art-explorer/art-explorer/node_modules/@testing-library/react/dist/act-compat.js:47:25
+2025-11-23T21:24:10.7233408Z         at renderRoot (/home/runner/work/art-explorer/art-explorer/node_modules/@testing-library/react/dist/pure.js:190:26)
+2025-11-23T21:24:10.7234338Z         at render (/home/runner/work/art-explorer/art-explorer/node_modules/@testing-library/react/dist/pure.js:292:10)
+2025-11-23T21:24:10.7235007Z         at Object.<anonymous> (/home/runner/work/art-explorer/art-explorer/src/App.test.tsx:7:9)
+2025-11-23T21:24:10.7235785Z         at Promise.finally.completed (/home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/jestAdapterInit.js:1557:28)
+2025-11-23T21:24:10.7236368Z         at new Promise (<anonymous>)
+2025-11-23T21:24:10.7236957Z         at callAsyncCircusFn (/home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/jestAdapterInit.js:1497:10)
+2025-11-23T21:24:10.7237816Z         at _callCircusTest (/home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/jestAdapterInit.js:1007:40)
+2025-11-23T21:24:10.7238650Z         at async _runTest (/home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/jestAdapterInit.js:947:3)
+2025-11-23T21:24:10.7239434Z         at async /home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/jestAdapterInit.js:849:7
+2025-11-23T21:24:10.7240298Z         at async _runTestsForDescribeBlock (/home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/jestAdapterInit.js:862:11)
+2025-11-23T21:24:10.7241405Z         at async _runTestsForDescribeBlock (/home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/jestAdapterInit.js:857:11)
+2025-11-23T21:24:10.7242268Z         at async run (/home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/jestAdapterInit.js:761:3)
+2025-11-23T21:24:10.7243309Z         at async runAndTransformResultsToJestFormat (/home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/jestAdapterInit.js:1918:21)
+2025-11-23T21:24:10.7244235Z         at async jestAdapter (/home/runner/work/art-explorer/art-explorer/node_modules/jest-circus/build/runner.js:101:19)
+2025-11-23T21:24:10.7245017Z         at async runTestInternal (/home/runner/work/art-explorer/art-explorer/node_modules/jest-runner/build/index.js:275:16)
+2025-11-23T21:24:10.7245790Z         at async runTest (/home/runner/work/art-explorer/art-explorer/node_modules/jest-runner/build/index.js:343:7) {
+2025-11-23T21:24:10.7246259Z       componentStack: '\n' +
+2025-11-23T21:24:10.7246764Z         '    at GalleryContent (/home/runner/work/art-explorer/art-explorer/src/components/Gallery/Gallery.tsx:13:2)\n' +
+2025-11-23T21:24:10.7247565Z         '    at ErrorBoundary (/home/runner/work/art-explorer/art-explorer/src/components/ErrorBoundary/ErrorBoundary.tsx:20:3)\n' +
+2025-11-23T21:24:10.7248114Z         '    at Gallery (<anonymous>)\n' +
+2025-11-23T21:24:10.7248390Z         '    at section (<anonymous>)\n' +
+2025-11-23T21:24:10.7248814Z         '    at Home (/home/runner/work/art-explorer/art-explorer/src/pages/Home.tsx:9:54)\n' +
+2025-11-23T21:24:10.7249581Z         '    at RenderedRoute (/home/runner/work/art-explorer/art-explorer/node_modules/react-router/dist/development/chunk-DI2QHYMJ.js:6453:26)\n' +
+2025-11-23T21:24:10.7250503Z         '    at Routes (/home/runner/work/art-explorer/art-explorer/node_modules/react-router/dist/development/chunk-72XNTZCV.js:609:3)\n' +
+2025-11-23T21:24:10.7251321Z         '    at main (<anonymous>)\n' +
+2025-11-23T21:24:10.7251579Z         '    at div (<anonymous>)\n' +
+2025-11-23T21:24:10.7252172Z         '    at Router (/home/runner/work/art-explorer/art-explorer/node_modules/react-router/dist/development/chunk-72XNTZCV.js:552:13)\n' +
+2025-11-23T21:24:10.7253098Z         '    at BrowserRouter (/home/runner/work/art-explorer/art-explorer/node_modules/react-router/dist/development/chunk-72XNTZCV.js:1027:3)\n' +
+2025-11-23T21:24:10.7253673Z         '    at App (<anonymous>)'
+2025-11-23T21:24:10.7253894Z     }
+2025-11-23T21:24:10.7253982Z 
+2025-11-23T21:24:10.7254544Z     [0m [90m 28 |[39m 	componentDidCatch(error[33m:[39m [33mError[39m[33m,[39m errorInfo[33m:[39m [33mReact[39m[33m.[39m[33mErrorInfo[39m) {
+2025-11-23T21:24:10.7255409Z      [90m 29 |[39m 		[90m// Log to error reporting service (Sentry, LogRocket, etc.)[39m
+2025-11-23T21:24:10.7256186Z     [31m[1m>[22m[39m[90m 30 |[39m 		console[33m.[39merror([32m'ErrorBoundary caught an error:'[39m[33m,[39m error[33m,[39m errorInfo)[33m;[39m
+2025-11-23T21:24:10.7256764Z      [90m    |[39m 		        [31m[1m^[22m[39m
+2025-11-23T21:24:10.7257347Z      [90m 31 |[39m 		[36mthis[39m[33m.[39mprops[33m.[39monError[33m?[39m[33m.[39m(error[33m,[39m errorInfo)[33m;[39m
+2025-11-23T21:24:10.7257797Z      [90m 32 |[39m 	}
+2025-11-23T21:24:10.7258013Z      [90m 33 |[39m[0m
+2025-11-23T21:24:10.7258135Z 
+2025-11-23T21:24:10.7258460Z       at ErrorBoundary.componentDidCatch (src/components/ErrorBoundary/ErrorBoundary.tsx:30:11)
+2025-11-23T21:24:10.7259127Z       at Object.react_stack_bottom_frame (node_modules/react-dom/cjs/react-dom-client.development.js:25959:20)
+2025-11-23T21:24:10.7259959Z       at ErrorBoundary.inst.componentDidCatch.update.callback (node_modules/react-dom/cjs/react-dom-client.development.js:9504:11)
+2025-11-23T21:24:10.7260841Z       at callCallback (node_modules/react-dom/cjs/react-dom-client.development.js:7423:16)
+2025-11-23T21:24:10.7261426Z       at commitCallbacks (node_modules/react-dom/cjs/react-dom-client.development.js:7443:11)
+2025-11-23T21:24:10.7262025Z       at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
+2025-11-23T21:24:10.7262642Z       at commitClassCallbacks (node_modules/react-dom/cjs/react-dom-client.development.js:13377:11)
+2025-11-23T21:24:10.7263615Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:14026:25)
+2025-11-23T21:24:10.7265079Z       at recursivelyTraverseLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15159:11)
+2025-11-23T21:24:10.7265957Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:13949:11)
+2025-11-23T21:24:10.7266681Z       at recursivelyTraverseLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15159:11)
+2025-11-23T21:24:10.7267404Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:14065:11)
+2025-11-23T21:24:10.7268103Z       at recursivelyTraverseLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15159:11)
+2025-11-23T21:24:10.7268807Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:13949:11)
+2025-11-23T21:24:10.7269520Z       at recursivelyTraverseLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15159:11)
+2025-11-23T21:24:10.7270228Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:14165:11)
+2025-11-23T21:24:10.7271078Z       at recursivelyTraverseLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15159:11)
+2025-11-23T21:24:10.7271783Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:13949:11)
+2025-11-23T21:24:10.7272487Z       at recursivelyTraverseLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15159:11)
+2025-11-23T21:24:10.7273182Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:13949:11)
+2025-11-23T21:24:10.7273886Z       at recursivelyTraverseLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15159:11)
+2025-11-23T21:24:10.7274583Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:14065:11)
+2025-11-23T21:24:10.7275279Z       at recursivelyTraverseLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15159:11)
+2025-11-23T21:24:10.7275978Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:14065:11)
+2025-11-23T21:24:10.7276680Z       at recursivelyTraverseLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15159:11)
+2025-11-23T21:24:10.7277372Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:14165:11)
+2025-11-23T21:24:10.7278726Z       at recursivelyTraverseLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15159:11)
+2025-11-23T21:24:10.7279469Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:14165:11)
+2025-11-23T21:24:10.7280194Z       at recursivelyTraverseLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15159:11)
+2025-11-23T21:24:10.7281040Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:13949:11)
+2025-11-23T21:24:10.7281750Z       at recursivelyTraverseLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15159:11)
+2025-11-23T21:24:10.7282447Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:13949:11)
+2025-11-23T21:24:10.7283136Z       at recursivelyTraverseLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15159:11)
+2025-11-23T21:24:10.7283835Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:13949:11)
+2025-11-23T21:24:10.7284528Z       at recursivelyTraverseLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:15159:11)
+2025-11-23T21:24:10.7285218Z       at commitLayoutEffectOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:14031:11)
+2025-11-23T21:24:10.7285863Z       at flushLayoutEffects (node_modules/react-dom/cjs/react-dom-client.development.js:18138:15)
+2025-11-23T21:24:10.7286573Z       at commitRoot (node_modules/react-dom/cjs/react-dom-client.development.js:17954:9)
+2025-11-23T21:24:10.7287172Z       at performWorkOnRoot (node_modules/react-dom/cjs/react-dom-client.development.js:16667:15)
+2025-11-23T21:24:10.7287858Z       at performWorkOnRootViaSchedulerTask (node_modules/react-dom/cjs/react-dom-client.development.js:18957:7)
+2025-11-23T21:24:10.7288455Z       at flushActQueue (node_modules/react/cjs/react.development.js:590:34)
+2025-11-23T21:24:10.7288982Z       at process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:884:10)
+2025-11-23T21:24:10.7289470Z       at node_modules/@testing-library/react/dist/act-compat.js:47:25
+2025-11-23T21:24:10.7289912Z       at renderRoot (node_modules/@testing-library/react/dist/pure.js:190:26)
+2025-11-23T21:24:10.7290365Z       at render (node_modules/@testing-library/react/dist/pure.js:292:10)
+2025-11-23T21:24:10.7290886Z       at Object.<anonymous> (src/App.test.tsx:7:9)
+2025-11-23T21:24:10.7291178Z 
+2025-11-23T21:24:10.7647186Z FAIL src/App.test.tsx
+2025-11-23T21:24:10.7671167Z   App
+2025-11-23T21:24:10.7671962Z     ✕ should render the Vite and React logos (138 ms)
+2025-11-23T21:24:10.7672329Z 
+2025-11-23T21:24:10.7672656Z   ● App › should render the Vite and React logos
+2025-11-23T21:24:10.7672975Z 
+2025-11-23T21:24:10.7674361Z     TestingLibraryElementError: Unable to find an element with the text: Vite + React. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+2025-11-23T21:24:10.7675666Z 
+2025-11-23T21:24:10.7675870Z     Ignored nodes: comments, script, style
+2025-11-23T21:24:10.7676292Z     [36m<body>[39m
+2025-11-23T21:24:10.7676630Z       [36m<div>[39m
+2025-11-23T21:24:10.7676972Z         [36m<div[39m
+2025-11-23T21:24:10.7677421Z           [33mclass[39m=[32m"container-main"[39m
+2025-11-23T21:24:10.7677848Z         [36m>[39m
+2025-11-23T21:24:10.7678183Z           [36m<header[39m
+2025-11-23T21:24:10.7678633Z             [33mclass[39m=[32m"header"[39m
+2025-11-23T21:24:10.7679060Z           [36m>[39m
+2025-11-23T21:24:10.7679406Z             [36m<div[39m
+2025-11-23T21:24:10.7679870Z               [33mclass[39m=[32m"header-logo"[39m
+2025-11-23T21:24:10.7680292Z             [36m>[39m
+2025-11-23T21:24:10.7680811Z               [36m<div[39m
+2025-11-23T21:24:10.7681327Z                 [33mclass[39m=[32m"header-logo-art"[39m
+2025-11-23T21:24:10.7682190Z               [36m>[39m
+2025-11-23T21:24:10.7682563Z                 [0mART[0m
+2025-11-23T21:24:10.7682956Z               [36m</div>[39m
+2025-11-23T21:24:10.7683335Z               [36m<div[39m
+2025-11-23T21:24:10.7683904Z                 [33mclass[39m=[32m"header-logo-explorer"[39m
+2025-11-23T21:24:10.7684385Z               [36m>[39m
+2025-11-23T21:24:10.7684787Z                 [0mExplorer[0m
+2025-11-23T21:24:10.7685204Z               [36m</div>[39m
+2025-11-23T21:24:10.7685600Z             [36m</div>[39m
+2025-11-23T21:24:10.7685976Z             [36m<div[39m
+2025-11-23T21:24:10.7686474Z               [33mclass[39m=[32m"header-navigation"[39m
+2025-11-23T21:24:10.7686931Z             [36m>[39m
+2025-11-23T21:24:10.7687269Z               [36m<nav[39m
+2025-11-23T21:24:10.7687770Z                 [33mclass[39m=[32m"nav-content "[39m
+2025-11-23T21:24:10.7688208Z               [36m>[39m
+2025-11-23T21:24:10.7688561Z                 [36m<a[39m
+2025-11-23T21:24:10.7689068Z                   [33maria-current[39m=[32m"page"[39m
+2025-11-23T21:24:10.7689649Z                   [33mclass[39m=[32m"nav-link active"[39m
+2025-11-23T21:24:10.7690216Z                   [33mdata-discover[39m=[32m"true"[39m
+2025-11-23T21:24:10.7690914Z                   [33mhref[39m=[32m"/"[39m
+2025-11-23T21:24:10.7691363Z                 [36m>[39m
+2025-11-23T21:24:10.7691767Z                   [36m<img[39m
+2025-11-23T21:24:10.7692240Z                     [33malt[39m=[32m"Home"[39m
+2025-11-23T21:24:10.7692777Z                     [33mclass[39m=[32m"nav-img"[39m
+2025-11-23T21:24:10.7693544Z                     [33msrc[39m=[32m"test-file-stub"[39m
+2025-11-23T21:24:10.7694052Z                   [36m/>[39m
+2025-11-23T21:24:10.7694468Z                   [36m<span[39m
+2025-11-23T21:24:10.7694966Z                     [33mclass[39m=[32m"nav-font"[39m
+2025-11-23T21:24:10.7695410Z                   [36m>[39m
+2025-11-23T21:24:10.7695820Z                     [0mHome[0m
+2025-11-23T21:24:10.7696270Z                   [36m</span>[39m
+2025-11-23T21:24:10.7696702Z                 [36m</a>[39m
+2025-11-23T21:24:10.7697091Z                 [36m<a[39m
+2025-11-23T21:24:10.7697567Z                   [33mclass[39m=[32m"nav-link"[39m
+2025-11-23T21:24:10.7698097Z                   [33mdata-discover[39m=[32m"true"[39m
+2025-11-23T21:24:10.7698621Z                   [33mhref[39m=[32m"/favorites"[39m
+2025-11-23T21:24:10.7699033Z                 [36m>[39m
+2025-11-23T21:24:10.7699401Z                   [36m<img[39m
+2025-11-23T21:24:10.7699936Z                     [33malt[39m=[32m"Collection"[39m
+2025-11-23T21:24:10.7700480Z                     [33mclass[39m=[32m"nav-img"[39m
+2025-11-23T21:24:10.7701212Z                     [33msrc[39m=[32m"test-file-stub"[39m
+2025-11-23T21:24:10.7701665Z                   [36m/>[39m
+2025-11-23T21:24:10.7702053Z                   [36m<span[39m
+2025-11-23T21:24:10.7702523Z                     [33mclass[39m=[32m"nav-font"[39m
+2025-11-23T21:24:10.7702939Z                   [36m>[39m
+2025-11-23T21:24:10.7703345Z                     [0mFavorites[0m
+2025-11-23T21:24:10.7703778Z                   [36m</span>[39m
+2025-11-23T21:24:10.7704208Z                 [36m</a>[39m
+2025-11-23T21:24:10.7704604Z               [36m</nav>[39m
+2025-11-23T21:24:10.7704996Z               [36m<button[39m
+2025-11-23T21:24:10.7705486Z                 [33maria-checked[39m=[32m"false"[39m
+2025-11-23T21:24:10.7706093Z                 [33maria-label[39m=[32m"Toggle dark mode"[39m
+2025-11-23T21:24:10.7706808Z                 [33mclass[39m=[32m"toggle-day-night bg-met-red-lighter"[39m
+2025-11-23T21:24:10.7707435Z                 [33mrole[39m=[32m"switch"[39m
+2025-11-23T21:24:10.7708000Z                 [33mtitle[39m=[32m"Switch to dark mode"[39m
+2025-11-23T21:24:10.7708542Z                 [33mtype[39m=[32m"button"[39m
+2025-11-23T21:24:10.7708988Z               [36m>[39m
+2025-11-23T21:24:10.7709588Z                 [36m<span[39m
+2025-11-23T21:24:10.7710181Z                   [33mclass[39m=[32m"toggle-btn translate-x-[3px]"[39m
+2025-11-23T21:24:10.7710844Z                 [36m>[39m
+2025-11-23T21:24:10.7711250Z                   [36m<img[39m
+2025-11-23T21:24:10.7711707Z                     [33malt[39m=[32m""[39m
+2025-11-23T21:24:10.7712237Z                     [33maria-hidden[39m=[32m"true"[39m
+2025-11-23T21:24:10.7712791Z                     [33mclass[39m=[32m"toggle-img"[39m
+2025-11-23T21:24:10.7713342Z                     [33msrc[39m=[32m"test-file-stub"[39m
+2025-11-23T21:24:10.7713838Z                   [36m/>[39m
+2025-11-23T21:24:10.7714251Z                 [36m</span>[39m
+2025-11-23T21:24:10.7714675Z               [36m</button>[39m
+2025-11-23T21:24:10.7715060Z             [36m</div>[39m
+2025-11-23T21:24:10.7715427Z             [36m<div[39m
+2025-11-23T21:24:10.7715956Z               [33mclass[39m=[32m"header-navigation-mobile"[39m
+2025-11-23T21:24:10.7716447Z             [36m>[39m
+2025-11-23T21:24:10.7716800Z               [36m<div[39m
+2025-11-23T21:24:10.7717320Z                 [33mclass[39m=[32m"hamburger sm:hidden  "[39m
+2025-11-23T21:24:10.7717784Z               [36m>[39m
+2025-11-23T21:24:10.7718160Z                 [36m<div[39m
+2025-11-23T21:24:10.7718621Z                   [33mclass[39m=[32m"bar"[39m
+2025-11-23T21:24:10.7719060Z                 [36m/>[39m
+2025-11-23T21:24:10.7719447Z                 [36m<div[39m
+2025-11-23T21:24:10.7719909Z                   [33mclass[39m=[32m"bar"[39m
+2025-11-23T21:24:10.7720341Z                 [36m/>[39m
+2025-11-23T21:24:10.7751994Z                 [36m<div[39m
+2025-11-23T21:24:10.7752538Z                   [33mclass[39m=[32m"bar"[39m
+2025-11-23T21:24:10.7752973Z                 [36m/>[39m
+2025-11-23T21:24:10.7753378Z               [36m</div>[39m
+2025-11-23T21:24:10.7753749Z               [36m<div[39m
+2025-11-23T21:24:10.7754214Z                 [33maria-hidden[39m=[32m"true"[39m
+2025-11-23T21:24:10.7754866Z                 [33mclass[39m=[32m"menu-drawer translate-x-full "[39m
+2025-11-23T21:24:10.7755462Z                 [33mrole[39m=[32m"dialog"[39m
+2025-11-23T21:24:10.7755878Z               [36m>[39m
+2025-11-23T21:24:10.7756260Z                 [36m<nav[39m
+2025-11-23T21:24:10.7756747Z                   [33mclass[39m=[32m"nav-content "[39m
+2025-11-23T21:24:10.7757226Z                 [36m>[39m
+2025-11-23T21:24:10.7757634Z                   [36m<a[39m
+2025-11-23T21:24:10.7758151Z                     [33maria-current[39m=[32m"page"[39m
+2025-11-23T21:24:10.7758746Z                     [33mclass[39m=[32m"nav-link active"[39m
+2025-11-23T21:24:10.7759346Z                     [33mdata-discover[39m=[32m"true"[39m
+2025-11-23T21:24:10.7759881Z                     [33mhref[39m=[32m"/"[39m
+2025-11-23T21:24:10.7760313Z                   [36m>[39m
+2025-11-23T21:24:10.7760885Z                     [36m<img[39m
+2025-11-23T21:24:10.7761395Z                       [33malt[39m=[32m"Home"[39m
+2025-11-23T21:24:10.7761936Z                       [33mclass[39m=[32m"nav-img"[39m
+2025-11-23T21:24:10.7762494Z                       [33msrc[39m=[32m"test-file-stub"[39m
+2025-11-23T21:24:10.7762985Z                     [36m/>[39m
+2025-11-23T21:24:10.7763421Z                     [36m<span[39m
+2025-11-23T21:24:10.7763925Z                       [33mclass[39m=[32m"nav-font"[39m
+2025-11-23T21:24:10.7764402Z                     [36m>[39m
+2025-11-23T21:24:10.7764817Z                       [0mHome[0m
+2025-11-23T21:24:10.7765268Z                     [36m</span>[39m
+2025-11-23T21:24:10.7765735Z                   [36m</a>[39m
+2025-11-23T21:24:10.7766134Z                   [36m<a[39m
+2025-11-23T21:24:10.7766616Z                     [33mclass[39m=[32m"nav-link"[39m
+2025-11-23T21:24:10.7767178Z                     [33mdata-discover[39m=[32m"true"[39m
+2025-11-23T21:24:10.7767730Z                     [33mhref[39m=[32m"/favorites"[39m
+2025-11-23T21:24:10.7768372Z                   [36m>[39m
+2025-11-23T21:24:10.7768783Z                     [36m<img[39m
+2025-11-23T21:24:10.7769276Z                       [33malt[39m=[32m"Collection"[39m
+2025-11-23T21:24:10.7769819Z                       [33mclass[39m=[32m"nav-img"[39m
+2025-11-23T21:24:10.7770372Z                       [33msrc[39m=[32m"test-file-stub"[39m
+2025-11-23T21:24:10.7771031Z                     [36m/>[39m
+2025-11-23T21:24:10.7771455Z                     [36m<span[39m
+2025-11-23T21:24:10.7771953Z                       [33mclass[39m=[32m"nav-font"[39m
+2025-11-23T21:24:10.7772427Z                     [36m>[39m
+2025-11-23T21:24:10.7772864Z                       [0mFavorites[0m
+2025-11-23T21:24:10.7773319Z                     [36m</span>[39m
+2025-11-23T21:24:10.7773745Z                   [36m</a>[39m
+2025-11-23T21:24:10.7774148Z                 [36m</nav>[39m
+2025-11-23T21:24:10.7774555Z                 [36m<div[39m
+2025-11-23T21:24:10.7775060Z                   [33mclass[39m=[32m"menu-drawer-theme"[39m
+2025-11-23T21:24:10.7775525Z                 [36m>[39m
+2025-11-23T21:24:10.7775922Z                   [36m<button[39m
+2025-11-23T21:24:10.7776446Z                     [33maria-checked[39m=[32m"false"[39m
+2025-11-23T21:24:10.7777056Z                     [33maria-label[39m=[32m"Toggle dark mode"[39m
+2025-11-23T21:24:10.7777797Z                     [33mclass[39m=[32m"toggle-day-night bg-met-red-lighter"[39m
+2025-11-23T21:24:10.7778452Z                     [33mrole[39m=[32m"switch"[39m
+2025-11-23T21:24:10.7779040Z                     [33mtitle[39m=[32m"Switch to dark mode"[39m
+2025-11-23T21:24:10.7779770Z                     [33mtype[39m=[32m"button"[39m
+2025-11-23T21:24:10.7780226Z                   [36m>[39m
+2025-11-23T21:24:10.7810819Z                     [36m<span[39m
+2025-11-23T21:24:10.7811489Z                       [33mclass[39m=[32m"toggle-btn translate-x-[3px]"[39m
+2025-11-23T21:24:10.7812042Z                     [36m>[39m
+2025-11-23T21:24:10.7812474Z                       [36m<img[39m
+2025-11-23T21:24:10.7812960Z                         [33malt[39m=[32m""[39m
+2025-11-23T21:24:10.7813510Z                         [33maria-hidden[39m=[32m"true"[39m
+2025-11-23T21:24:10.7814087Z                         [33mclass[39m=[32m"toggle-img"[39m
+2025-11-23T21:24:10.7814653Z                         [33msrc[39m=[32m"test-file-stub"[39m
+2025-11-23T21:24:10.7815135Z                       [36m/>[39m
+2025-11-23T21:24:10.7815573Z                     [36m</span>[39m
+2025-11-23T21:24:10.7816015Z                   [36m</button>[39m
+2025-11-23T21:24:10.7816443Z                 [36m</div>[39m
+2025-11-23T21:24:10.7816847Z               [36m</div>[39m
+2025-11-23T21:24:10.7817215Z             [36m</div>[39m
+2025-11-23T21:24:10.7817586Z           [36m</header>[39m
+2025-11-23T21:24:10.7817954Z           [36m<main[39m
+2025-11-23T21:24:10.7818409Z             [33mclass[39m=[32m"main-content"[39m
+2025-11-23T21:24:10.7818840Z           [36m>[39m
+2025-11-23T21:24:10.7819203Z             [36m<section[39m
+2025-11-23T21:24:10.7819696Z               [33mclass[39m=[32m"container-page"[39m
+2025-11-23T21:24:10.7820130Z             [36m>[39m
+2025-11-23T21:24:10.7820473Z               [36m<h1>[39m
+2025-11-23T21:24:10.7821094Z                 [0mSearch The Collection[0m
+2025-11-23T21:24:10.7821530Z               [36m</h1>[39m
+2025-11-23T21:24:10.7821899Z               [36m<form[39m
+2025-11-23T21:24:10.7822426Z                 [33mclass[39m=[32m"search-bar-container "[39m
+2025-11-23T21:24:10.7822997Z                 [33mrole[39m=[32m"search"[39m
+2025-11-23T21:24:10.7823437Z               [36m>[39m
+2025-11-23T21:24:10.7823827Z                 [36m<input[39m
+2025-11-23T21:24:10.7824477Z                   [33maria-label[39m=[32m"Search artworks by artist or culture"[39m
+2025-11-23T21:24:10.7825153Z                   [33mautocomplete[39m=[32m"off"[39m
+2025-11-23T21:24:10.7825732Z                   [33mclass[39m=[32m"search-bar-input"[39m
+2025-11-23T21:24:10.7826494Z                   [33minputmode[39m=[32m"search"[39m
+2025-11-23T21:24:10.7827020Z                   [33mname[39m=[32m"q"[39m
+2025-11-23T21:24:10.7827643Z                   [33mplaceholder[39m=[32m"Search artist / culture"[39m
+2025-11-23T21:24:10.7828264Z                   [33mspellcheck[39m=[32m"false"[39m
+2025-11-23T21:24:10.7828779Z                   [33mtype[39m=[32m"text"[39m
+2025-11-23T21:24:10.7829277Z                   [33mvalue[39m=[32m""[39m
+2025-11-23T21:24:10.7829692Z                 [36m/>[39m
+2025-11-23T21:24:10.7830107Z                 [36m<button[39m
+2025-11-23T21:24:10.7830766Z                   [33maria-label[39m=[32m"Search"[39m
+2025-11-23T21:24:10.7831359Z                   [33mclass[39m=[32m"search-bar-button"[39m
+2025-11-23T21:24:10.7831905Z                   [33mtype[39m=[32m"submit"[39m
+2025-11-23T21:24:10.7832332Z                 [36m>[39m
+2025-11-23T21:24:10.7832742Z                   [36m<img[39m
+2025-11-23T21:24:10.7833204Z                     [33malt[39m=[32m""[39m
+2025-11-23T21:24:10.7833730Z                     [33maria-hidden[39m=[32m"true"[39m
+2025-11-23T21:24:10.7834290Z                     [33mclass[39m=[32m"search-icon"[39m
+2025-11-23T21:24:10.7834858Z                     [33msrc[39m=[32m"test-file-stub"[39m
+2025-11-23T21:24:10.7835327Z                   [36m/>[39m
+2025-11-23T21:24:10.7835747Z                 [36m</button>[39m
+2025-11-23T21:24:10.7836162Z               [36m</form>[39m
+2025-11-23T21:24:10.7836529Z               [36m<div[39m
+2025-11-23T21:24:10.7837177Z                 [33mclass[39m=[32m"gallery-fallback"[39m
+2025-11-23T21:24:10.7837633Z               [36m>[39m
+2025-11-23T21:24:10.7837990Z                 [36m<h3[39m
+2025-11-23T21:24:10.7838526Z                   [33mclass[39m=[32m"gallery-fallback-title"[39m
+2025-11-23T21:24:10.7838998Z                 [36m>[39m
+2025-11-23T21:24:10.7839446Z                   [0mFailed to load gallery[0m
+2025-11-23T21:24:10.7839920Z                 [36m</h3>[39m
+2025-11-23T21:24:10.7840298Z                 [36m<p[39m
+2025-11-23T21:24:10.7871078Z                   [33mclass[39m=[32m"gallery-fallback-message"[39m
+2025-11-23T21:24:10.7871580Z                 [36m>[39m
+2025-11-23T21:24:10.7872100Z                   [0mAn error occurred while loading artworks[0m
+2025-11-23T21:24:10.7872616Z                 [36m</p>[39m
+2025-11-23T21:24:10.7873011Z               [36m</div>[39m
+2025-11-23T21:24:10.7873407Z             [36m</section>[39m
+2025-11-23T21:24:10.7873779Z           [36m</main>[39m
+2025-11-23T21:24:10.7874142Z         [36m</div>[39m
+2025-11-23T21:24:10.7874483Z       [36m</div>[39m
+2025-11-23T21:24:10.7874803Z     [36m</body>[39m
+2025-11-23T21:24:10.7874986Z 
+2025-11-23T21:24:10.7875544Z     [0m [90m  6 |[39m 	it([32m'should render the Vite and React logos'[39m[33m,[39m () [33m=>[39m {
+2025-11-23T21:24:10.7876444Z      [90m  7 |[39m 		render([33m<[39m[33mApp[39m [33m/[39m[33m>[39m)[33m;[39m
+2025-11-23T21:24:10.7877554Z     [31m[1m>[22m[39m[90m  8 |[39m 		expect(screen[33m.[39mgetByText([32m'Vite + React'[39m))[33m.[39mtoBeInTheDocument()[33m;[39m
+2025-11-23T21:24:10.7878413Z      [90m    |[39m 		              [31m[1m^[22m[39m
+2025-11-23T21:24:10.7878901Z      [90m  9 |[39m 	})[33m;[39m
+2025-11-23T21:24:10.7879323Z      [90m 10 |[39m })[33m;[39m
+2025-11-23T21:24:10.7879705Z      [90m 11 |[39m[0m
+2025-11-23T21:24:10.7879891Z 
+2025-11-23T21:24:10.7880323Z       at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+2025-11-23T21:24:10.7881276Z       at node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+2025-11-23T21:24:10.7882017Z       at node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+2025-11-23T21:24:10.7882690Z       at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+2025-11-23T21:24:10.7883276Z       at Object.<anonymous> (src/App.test.tsx:8:17)
+2025-11-23T21:24:10.7883826Z 
+2025-11-23T21:24:10.7884034Z Test Suites: 1 failed, 1 total
+2025-11-23T21:24:10.7884427Z Tests:       1 failed, 1 total
+2025-11-23T21:24:10.7884772Z Snapshots:   0 total
+2025-11-23T21:24:10.7885083Z Time:        3.84 s
+2025-11-23T21:24:10.7885375Z Ran all test suites.
+2025-11-23T21:24:10.9662011Z ##[error]Process completed with exit code 1.
+2025-11-23T21:24:10.9780024Z Post job cleanup.
+2025-11-23T21:24:11.0714099Z [command]/usr/bin/git version
+2025-11-23T21:24:11.0750923Z git version 2.51.2
+2025-11-23T21:24:11.0796244Z Temporarily overriding HOME='/home/runner/work/_temp/140699c1-9040-44e8-b35b-fa5759db98bf' before making global git config changes
+2025-11-23T21:24:11.0797674Z Adding repository directory to the temporary git global config as a safe directory
+2025-11-23T21:24:11.0803033Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/art-explorer/art-explorer
+2025-11-23T21:24:11.0845661Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-11-23T21:24:11.0877916Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-11-23T21:24:11.1102905Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-11-23T21:24:11.1124652Z http.https://github.com/.extraheader
+2025-11-23T21:24:11.1137842Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2025-11-23T21:24:11.1171628Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-11-23T21:24:11.1394714Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2025-11-23T21:24:11.1425160Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2025-11-23T21:24:11.1758688Z Cleaning up orphan processes
