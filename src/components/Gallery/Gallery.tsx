@@ -1,13 +1,15 @@
-import { useCallback, useEffect, useMemo } from 'react';
 import type { GalleryProps } from '@/types/gallery';
-import GalleryCardSkeleton from './GalleryCardSkeleton';
 import GalleryCards from './GalleryCards';
+import GalleryStates from './GalleryStates';
+import GalleryErrorFallback from './GalleryErrorFallback';
 import InfiniteScrolling from '@/components/InfiniteScrolling/InfiniteScrolling';
-import { useMetMuseumArtworks } from '@/hooks/useMetMuseumArtworks';
+import ErrorBoundary from '@/components/ErrorBoundary/ErrorBoundary';
+import { useGalleryData } from '@/hooks/useGalleryData';
+import { useGalleryCallbacks } from '@/hooks/useGalleryCallbacks';
 
 const PAGE_SIZE = 15;
 
-const Gallery = ({
+const GalleryContent = ({
 	isLoading = false,
 	className = '',
 	searchQuery = '',
@@ -15,94 +17,54 @@ const Gallery = ({
 	externalArtworks,
 }: GalleryProps) => {
 	const {
-		artworks: apiArtworks,
-		isLoading: isLoadingApi,
+		displayItems,
+		loading,
+		error,
 		isFetchingNextPage,
 		hasNextPage,
 		fetchNextPage,
-		error,
 		totalResults,
 		isDefaultSearch,
-	} = useMetMuseumArtworks(searchQuery, !externalArtworks);
-
-	// Derived data is memoized to keep referential stability for children
-	const displayItems = useMemo(
-		() => externalArtworks || apiArtworks,
-		[externalArtworks, apiArtworks]
-	);
-
-	const loading = useMemo(
-		() => (externalArtworks ? isLoading : isLoadingApi),
-		[externalArtworks, isLoading, isLoadingApi]
-	);
-
-	// Stable handler (DIP: UI doesn’t know the fetching details)
-	const loadMore = useCallback(async () => {
-		if (hasNextPage && !isFetchingNextPage) {
-			await fetchNextPage();
-		}
-	}, [hasNextPage, isFetchingNextPage, fetchNextPage]);
-
-	// Notify parent when search results change (SRP: side-effect isolated)
-	useEffect(() => {
-		if (onResultsChange && searchQuery && !isLoadingApi && !isDefaultSearch) {
-			onResultsChange(totalResults);
-		}
-	}, [
-		totalResults,
-		isLoadingApi,
-		onResultsChange,
+		isExternal,
+	} = useGalleryData({
 		searchQuery,
+		externalArtworks,
+		isExternalLoading: isLoading,
+	});
+
+	const { loadMore } = useGalleryCallbacks({
+		hasNextPage,
+		isFetchingNextPage,
+		fetchNextPage,
+		onResultsChange,
+		totalResults,
+		searchQuery,
+		isLoading: loading,
 		isDefaultSearch,
-	]);
+	});
 
-	// UI states
-	if (loading && displayItems.length === 0) {
-		return (
-			<section className={`gallery-container ${className}`}>
-				<div className="gallery-grid">
-					{Array.from({ length: PAGE_SIZE }).map((_, i) => (
-						<GalleryCardSkeleton key={i} />
-					))}
-				</div>
-			</section>
-		);
-	}
+	const renderContent = () => {
+		// Loading state
+		if (loading && displayItems.length === 0) {
+			return <GalleryStates type="loading" pageSize={PAGE_SIZE} />;
+		}
 
-	if (error && !externalArtworks) {
-		return (
-			<section className={`gallery-container ${className}`}>
-				<div className="text-center py-12">
-					<p className="text-red-500 text-lg">
-						Failed to load artworks. Please try again later.
-					</p>
-				</div>
-			</section>
-		);
-	}
+		// Error state
+		if (error) {
+			return <GalleryStates type="error" />;
+		}
 
-	if (!loading && displayItems.length === 0) {
-		return (
-			<section className={`gallery-container ${className}`}>
-				<div className="text-center py-12">
-					<p className="text-gray-500 text-lg">No artworks found</p>
-				</div>
-			</section>
-		);
-	}
+		// Empty state
+		if (!loading && displayItems.length === 0) {
+			return <GalleryStates type="empty" />;
+		}
 
-	const cards = <GalleryCards displayItems={displayItems} />;
+		// Success state with data
+		const cards = <GalleryCards displayItems={displayItems} />;
 
-	// Favorites (external data): no infinite scroll
-	if (externalArtworks) {
-		return (
-			<section className={`gallery-container ${className}`}>{cards}</section>
-		);
-	}
-
-	// Home (API + infinite scroll)
-	return (
-		<section className={`gallery-container ${className}`}>
+		return isExternal ? (
+			cards
+		) : (
 			<InfiniteScrolling
 				pageSize={PAGE_SIZE}
 				isLoading={isFetchingNextPage}
@@ -111,7 +73,21 @@ const Gallery = ({
 			>
 				{cards}
 			</InfiniteScrolling>
+		);
+	};
+
+	return (
+		<section className={`gallery-container ${className}`}>
+			{renderContent()}
 		</section>
+	);
+};
+
+const Gallery = (props: GalleryProps) => {
+	return (
+		<ErrorBoundary fallback={<GalleryErrorFallback />}>
+			<GalleryContent {...props} />
+		</ErrorBoundary>
 	);
 };
 

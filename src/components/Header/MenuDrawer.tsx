@@ -22,7 +22,7 @@ export function MenuDrawer({
 			className={`menu-drawer ${position} ${className}`}
 		>
 			<Navigation />
-			<div className="mt-4 w-full flex justify-end">
+			<div className="menu-drawer-theme">
 				<DayNightButton />
 			</div>
 		</div>

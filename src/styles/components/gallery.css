@@ -58,4 +58,21 @@
 		@apply text-sm 
     text-gray-500 dark:text-gray-400;
 	}
+
+	/* Error Boundary FallBack */
+	.gallery-fallback {
+		@apply text-center py-12;
+	}
+
+	.gallery-fallback-title {
+		@apply text-xl font-semibold text-red-600 mb-2;
+	}
+
+	.gallery-fallback-message {
+		@apply text-gray-600 mb-4;
+	}
+
+	.gallery-fallback-btn {
+		@apply px-4 py-2 bg-[--color-met-red-darker] text-white rounded hover:opacity-90;
+	}
 }

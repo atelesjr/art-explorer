@@ -5,14 +5,15 @@ import ResultsCounter from '@/components/SearchBar/ResultsCounter';
 import { useScrollRestoration } from '@/hooks/useScrollRestoration';
 import { useSearchState } from '@/hooks/useSearchState';
 
-/**
- * OCP: Home is open for extension (add filters, sorting)
- * without modifying core logic.
- * SRP: Only composes UI; logic delegated to hooks.
- */
 const Home = () => {
 	const { clearScrollPosition } = useScrollRestoration();
-	const { searchQuery, totalResults, updateSearch, clearSearch, updateResults } = useSearchState();
+	const {
+		searchQuery,
+		totalResults,
+		updateSearch,
+		clearSearch,
+		updateResults,
+	} = useSearchState();
 
 	const handleSearch = useCallback(
 		(query: string) => {
@@ -38,10 +39,7 @@ const Home = () => {
 				initialQuery={searchQuery}
 			/>
 			<ResultsCounter count={totalResults} query={searchQuery} />
-			<Gallery
-				searchQuery={searchQuery}
-				onResultsChange={updateResults}
-			/>
+			<Gallery searchQuery={searchQuery} onResultsChange={updateResults} />
 		</section>
 	);
 };

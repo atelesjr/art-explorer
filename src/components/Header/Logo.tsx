@@ -1,14 +1,10 @@
-interface LogoProps {
-    className?: string;
-}
+const Logo = () => {
+	return (
+		<div className="header-logo">
+			<div className="header-logo-art">ART</div>
+			<div className="header-logo-explorer">Explorer</div>
+		</div>
+	);
+};
 
-export function Logo({ className = '' }: LogoProps) {
-    return (
-        <div
-            className={`font-bold flex flex-col items-center font-serif -top-0.5 relative ${className}`}
-        >
-            <div className="text-[40px] sm:text-[45px] leading-[0.9]">ART</div>
-            <div className="text-[21px] font-light leading-none">Explorer</div>
-        </div>
-    );
-}
+export default Logo;
