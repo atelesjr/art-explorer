@@ -5,6 +5,7 @@ import App from './App';
 describe('App', () => {
 	it('should render the Vite and React logos', () => {
 		render(<App />);
-		expect(screen.getByText('Vite + React')).toBeInTheDocument();
+		// App no longer shows the default Vite template text; assert a current UI string
+		expect(screen.getByText('Search The Collection')).toBeInTheDocument();
 	});
 });
